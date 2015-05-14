@@ -14,7 +14,6 @@ public class Main {
             while(!Display.isCloseRequested()) {
                 Display.update();
             }
-//test
             Display.destroy();
         } catch(LWJGLException e) {
             e.printStackTrace();
