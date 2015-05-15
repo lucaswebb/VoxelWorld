@@ -13,7 +13,10 @@ public class GameLoop {
 
     CameraControl camera = new CameraControl(0,0,0);
     float movementSpeed = 10.0f;
+    float mouseSensitivity = 0.05f;
     float dt = 0.0f;
+    float dx;
+    float dy;
 
     //Mouse.setGrabbed(true);
 
@@ -27,25 +30,8 @@ public class GameLoop {
         }
         initGL(); // init OpenGL
 
-        while (!Display.isCloseRequested()) {
-            if (Keyboard.isKeyDown(Keyboard.KEY_W))//move forward
-            {
-                camera.walkForward(movementSpeed*dt);
-            }
-            if (Keyboard.isKeyDown(Keyboard.KEY_S))//move backwards
-            {
-                camera.walkBackwards(movementSpeed*dt);
-            }
-            if (Keyboard.isKeyDown(Keyboard.KEY_A))//strafe left
-            {
-                camera.strafeLeft(movementSpeed*dt);
-            }
-            if (Keyboard.isKeyDown(Keyboard.KEY_D))//strafe right
-            {
-                camera.strafeRight(movementSpeed*dt);
-            }
+        while (!Display.isCloseRequested() && !Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
 
-            camera.lookThrough();
             renderGL();
 
             Display.update();
@@ -56,6 +42,30 @@ public class GameLoop {
     }
 
     public void update(){
+        dx = Mouse.getDX();
+        dy = Mouse.getDY();
+
+        camera.incrementYaw(dx * mouseSensitivity);
+        camera.incrementPitch(dy * mouseSensitivity);
+
+        if (Keyboard.isKeyDown(Keyboard.KEY_W))//move forward
+        {
+            camera.walkForward(movementSpeed*dt);
+        }
+        if (Keyboard.isKeyDown(Keyboard.KEY_S))//move backwards
+        {
+            camera.walkBackwards(movementSpeed*dt);
+        }
+        if (Keyboard.isKeyDown(Keyboard.KEY_A))//strafe left
+        {
+            camera.strafeLeft(movementSpeed*dt);
+        }
+        if (Keyboard.isKeyDown(Keyboard.KEY_D))//strafe right
+        {
+            camera.strafeRight(movementSpeed*dt);
+        }
+        GL11.glLoadIdentity();
+        camera.lookThrough();
 
     }
 
