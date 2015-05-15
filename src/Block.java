@@ -7,19 +7,20 @@ public class Block {
     private int x;
     private int y;
     private int z;
-    private int red;
-    private int green;
-    private int blue;
-    private int alpha;
+    private float red;
+    private float green;
+    private float blue;
+    private float alpha;
     private boolean canRender = true;
-    Block(int a, int b, int c, int d, int e, int f, int g) {
-        x = a;
-        y = b;
-        z = c;
-        red = d;
-        green = e;
-        blue = f;
-        alpha = g;
+
+    Block(int x, int y, int z, float r, float g, float b, float a) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        red = r;
+        green = g;
+        blue = b;
+        alpha = a;
     }
 
     public void render(){
@@ -33,44 +34,41 @@ public class Block {
 
     public void cube(int f){
         GL11.glBegin(GL11.GL_QUADS);          // Begin drawing the color cube with 6 quads
+
+        GL11.glColor4f(red, green, blue, alpha);
+
         // Top face (y = 1.0f)
         // Define vertices in counter-clockwise (CCW) order with normal pointing out
-        GL11.glColor3f(0.0f, 1.0f, 0.0f);     // Green
         GL11.glVertex3d( 1.0*f, 1.0*f, -1.0*f);
         GL11.glVertex3d(-1.0*f, 1.0*f, -1.0*f);
         GL11.glVertex3d(-1.0*f, 1.0*f,  1.0*f);
         GL11.glVertex3d( 1.0*f, 1.0*f,  1.0*f);
 
         // Bottom face (y = -1.0f)
-        GL11.glColor3f(1.0f, 0.5f, 0.0f);     // Orange
         GL11.glVertex3d( 1.0*f, -1.0*f,  1.0*f);
         GL11.glVertex3d(-1.0*f, -1.0*f,  1.0*f);
         GL11.glVertex3d(-1.0*f, -1.0*f, -1.0*f);
         GL11.glVertex3d( 1.0*f, -1.0*f, -1.0*f);
 
         // Front face  (z = 1.0f)
-        GL11.glColor3f(1.0f, 0.0f, 0.0f);     // Red
         GL11.glVertex3d( 1.0*f,  1.0*f, 1.0*f);
         GL11.glVertex3d(-1.0*f,  1.0*f, 1.0*f);
         GL11.glVertex3d(-1.0*f, -1.0*f, 1.0*f);
         GL11.glVertex3d( 1.0*f, -1.0*f, 1.0*f);
 
         // Back face (z = -1.0f)
-        GL11.glColor3f(1.0f, 1.0f, 0.0f);     // Yellow
         GL11.glVertex3d( 1.0*f, -1.0*f, -1.0*f);
         GL11.glVertex3d(-1.0*f, -1.0*f, -1.0*f);
         GL11.glVertex3d(-1.0*f,  1.0*f, -1.0*f);
         GL11.glVertex3d( 1.0*f,  1.0*f, -1.0*f);
 
         // Left face (x = -1.0f)
-        GL11.glColor3f(0.0f, 0.0f, 1.0f);     // Blue
         GL11.glVertex3d(-1.0*f,  1.0*f,  1.0*f);
         GL11.glVertex3d(-1.0*f,  1.0*f, -1.0*f);
         GL11.glVertex3d(-1.0*f, -1.0*f, -1.0*f);
         GL11.glVertex3d(-1.0*f, -1.0*f,  1.0*f);
 
         // Right face (x = 1.0f)
-        GL11.glColor3f(1.0f, 0.0f, 1.0f);     // Magenta
         GL11.glVertex3d(1.0*f,  1.0*f, -1.0*f);
         GL11.glVertex3d(1.0*f,  1.0*f,  1.0*f);
         GL11.glVertex3d(1.0*f, -1.0*f,  1.0*f);
@@ -87,16 +85,16 @@ public class Block {
     public int getZ(){
         return z;
     }
-    public int getRed() {
+    public float getRed() {
         return red;
     }
-    public int getGreen() {
+    public float getGreen() {
         return green;
     }
-    public int getBlue() {
+    public float getBlue() {
         return blue;
     }
-    public int getAlpha() {
+    public float getAlpha() {
         return alpha;
     }
 }
