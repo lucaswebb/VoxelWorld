@@ -45,4 +45,14 @@ public class CameraControl {
         position.x -= distance * (float)Math.sin(Math.toRadians(yaw+90));
         position.z += distance * (float)Math.cos(Math.toRadians(yaw+90));
     }
+
+    public void lookThrough()
+    {
+        //roatate the pitch around the X axis
+        GL11.glRotatef(pitch, 1.0f, 0.0f, 0.0f);
+        //roatate the yaw around the Y axis
+        GL11.glRotatef(yaw, 0.0f, 1.0f, 0.0f);
+        //translate to the position vector's location
+        GL11.glTranslatef(position.x, position.y, position.z);
+    }
 }
