@@ -3,6 +3,7 @@ import org.lwjgl.opengl.GL11;
 /**
  * Created by arjun on 5/15/15.
  */
+
 public class Block {
     private int x;
     private int y;
@@ -33,47 +34,45 @@ public class Block {
     }
 
     public void cube(int f){
-        GL11.glBegin(GL11.GL_QUADS);          // Begin drawing the color cube with 6 quads
-
+        GL11.glBegin(GL11.GL_QUADS);
         GL11.glColor4f(red, green, blue, alpha);
 
-        // Top face (y = 1.0f)
-        // Define vertices in counter-clockwise (CCW) order with normal pointing out
+        // Top face
         GL11.glVertex3d( 1.0*f, 1.0*f, -1.0*f);
         GL11.glVertex3d(-1.0*f, 1.0*f, -1.0*f);
         GL11.glVertex3d(-1.0*f, 1.0*f,  1.0*f);
         GL11.glVertex3d( 1.0*f, 1.0*f,  1.0*f);
 
-        // Bottom face (y = -1.0f)
+        // Bottom face
         GL11.glVertex3d( 1.0*f, -1.0*f,  1.0*f);
         GL11.glVertex3d(-1.0*f, -1.0*f,  1.0*f);
         GL11.glVertex3d(-1.0*f, -1.0*f, -1.0*f);
         GL11.glVertex3d( 1.0*f, -1.0*f, -1.0*f);
 
-        // Front face  (z = 1.0f)
+        // Front face
         GL11.glVertex3d( 1.0*f,  1.0*f, 1.0*f);
         GL11.glVertex3d(-1.0*f,  1.0*f, 1.0*f);
         GL11.glVertex3d(-1.0*f, -1.0*f, 1.0*f);
         GL11.glVertex3d( 1.0*f, -1.0*f, 1.0*f);
 
-        // Back face (z = -1.0f)
+        // Back face
         GL11.glVertex3d( 1.0*f, -1.0*f, -1.0*f);
         GL11.glVertex3d(-1.0*f, -1.0*f, -1.0*f);
         GL11.glVertex3d(-1.0*f,  1.0*f, -1.0*f);
         GL11.glVertex3d( 1.0*f,  1.0*f, -1.0*f);
 
-        // Left face (x = -1.0f)
+        // Left face
         GL11.glVertex3d(-1.0*f,  1.0*f,  1.0*f);
         GL11.glVertex3d(-1.0*f,  1.0*f, -1.0*f);
         GL11.glVertex3d(-1.0*f, -1.0*f, -1.0*f);
         GL11.glVertex3d(-1.0*f, -1.0*f,  1.0*f);
 
-        // Right face (x = 1.0f)
+        // Right face
         GL11.glVertex3d(1.0*f,  1.0*f, -1.0*f);
         GL11.glVertex3d(1.0*f,  1.0*f,  1.0*f);
         GL11.glVertex3d(1.0*f, -1.0*f,  1.0*f);
         GL11.glVertex3d(1.0*f, -1.0*f, -1.0*f);
-        GL11.glEnd();  // End of drawing color-cube
+        GL11.glEnd();
     }
 
     public int getX() {
