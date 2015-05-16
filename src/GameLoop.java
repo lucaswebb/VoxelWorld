@@ -32,6 +32,7 @@ public class GameLoop {
 
         while (!Display.isCloseRequested() && !Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
 
+            update();
             renderGL();
 
             Display.update();
@@ -44,6 +45,7 @@ public class GameLoop {
     public void update(){
         dx = Mouse.getDX();
         dy = Mouse.getDY();
+        dt = 1.0f;
 
         camera.incrementYaw(dx * mouseSensitivity);
         camera.incrementPitch(dy * mouseSensitivity);
@@ -66,7 +68,6 @@ public class GameLoop {
         }
         GL11.glLoadIdentity();
         camera.lookThrough();
-
     }
 
     public void initGL(){
