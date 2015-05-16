@@ -24,10 +24,10 @@ public class Block {
         alpha = a;
     }
 
-    public void render(){
+    public void render(int n){
         if(canRender) {
             GL11.glPushMatrix();
-            GL11.glTranslated(x, y, z);
+            GL11.glTranslated(x+64*n, y+64*n, z+64*n);
             cube(100);
             GL11.glPopMatrix();
         }
