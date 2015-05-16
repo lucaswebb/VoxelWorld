@@ -8,6 +8,8 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.util.glu.GLU;
+
 
 public class GameLoop {
 
@@ -18,8 +20,6 @@ public class GameLoop {
     float dx;
     float dy;
 
-    //Mouse.setGrabbed(true);
-
     public void start(){
         try {
             Display.setDisplayMode(new DisplayMode(800, 600));
@@ -29,6 +29,8 @@ public class GameLoop {
             System.exit(0);
         }
         initGL(); // init OpenGL
+
+        Mouse.setGrabbed(true);
 
         while (!Display.isCloseRequested() && !Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
 
@@ -73,7 +75,9 @@ public class GameLoop {
     public void initGL(){
         GL11.glMatrixMode(GL11.GL_PROJECTION);
         GL11.glLoadIdentity();
-        GL11.glOrtho(0, 800, 0, 600, 600, -600);
+        //GL11.glOrtho(0, 800, 0, 600, 600, -600);
+        GLU.gluPerspective(90,(float)800/600,100,-600);
+        GLU.gluLookAt(0,300,1300,0,0,0,0,1,0);
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
     }
 
