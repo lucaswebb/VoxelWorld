@@ -85,7 +85,7 @@ public class GameLoop {
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
         GL11.glEnable(GL11.GL_DEPTH_TEST);
         Block b = new Block(400,300,0,0,1,0,1);
-        b.render();
+        b.render(0,0,0);
     }
 
     public static void main(String[] args){

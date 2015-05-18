@@ -4,12 +4,16 @@
 
 public class Chunk {
     private Block[][][] chunk; //3D Array holding Blocks
-    int chunkLocation;  //Int determining which chunk it is
-
-    Chunk(int n) {
+    //Values determining where the chunk is
+    private int x;  //Int determining which chunk it is
+    private int y;
+    private int z;
+    Chunk(int a, int b, int c) {
         //Initialize Variables
         chunk = new Block[16][16][16];
-        chunkLocation = n;
+        x = a;
+        y = b;
+        z = c;
     }
 
     public void addBlock(Block block) {
@@ -63,7 +67,7 @@ public class Chunk {
             for (int j = 0; j < chunk[0].length; j++) {
                 for (int k = 0; k < chunk[0][0].length; k++) {
                     if(isAdjacentBlock(i,j,k)){
-                        chunk[i][j][k].render(chunkLocation);
+                        chunk[i][j][k].render(this.x,this.y,this.z);
                     }
                 }
             }
