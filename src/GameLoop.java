@@ -47,7 +47,7 @@ public class GameLoop {
     public void update(){
         dx = Mouse.getDX();
         dy = Mouse.getDY();
-        dt = 1.0f;
+        dt = 1;
 
         camera.incrementYaw(dx * mouseSensitivity);
         camera.incrementPitch(dy * mouseSensitivity);
@@ -76,16 +76,16 @@ public class GameLoop {
         GL11.glMatrixMode(GL11.GL_PROJECTION);
         GL11.glLoadIdentity();
         //GL11.glOrtho(0, 800, 0, 600, 600, -600);
-        GLU.gluPerspective(90,(float)800/600,100,-600);
-        GLU.gluLookAt(0,300,1300,0,0,0,0,1,0);
+        GLU.gluPerspective(90,(float)800/600,1000,-1000);
+        GLU.gluLookAt(0,0,0,0,0,0,0,1,0);
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
     }
 
     public void renderGL() {
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
         GL11.glEnable(GL11.GL_DEPTH_TEST);
-        Block b = new Block(400,300,0,0,1,0,1);
-        b.render(0,0,0);
+        Block b = new Block(0,0,0,0,1,0,1);
+        b.render(0, 0, 0);
     }
 
     public static void main(String[] args){

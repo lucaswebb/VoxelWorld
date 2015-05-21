@@ -19,7 +19,7 @@ public class CameraControl {
     }
 
     public void incrementPitch(float amount){
-        pitch += amount;
+        pitch +=amount;
     }
 
     public void walkForward(float distance)
