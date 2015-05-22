@@ -8,7 +8,7 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.input.Keyboard;
 
 public class CameraControl {
-    public static float moveSpeed = 20.0f;
+    public static float moveSpeed = 30.0f;
 
     private static float maxLook = 85;
 
@@ -113,7 +113,4 @@ public class CameraControl {
             pos.z -= Math.cos(Math.toRadians(rotation.y + 90)) * speed;
         }
     }
-
-
-
 }
