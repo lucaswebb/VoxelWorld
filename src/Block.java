@@ -12,7 +12,6 @@ public class Block {
     private float green;
     private float blue;
     private float alpha;
-    private boolean canRender = true;
 
     Block(int x, int y, int z, float r, float g, float b, float a) {
         this.x = x;
@@ -25,12 +24,10 @@ public class Block {
     }
 
     public void render(int a, int b, int c){
-        if(canRender) {
-            GL11.glPushMatrix();
-            GL11.glTranslated(x+((16)*a), y+(64*16*b), z+(64*16*c));
-            cube(1000);
-            GL11.glPopMatrix();
-        }
+        GL11.glPushMatrix();
+        GL11.glTranslated(x+((16)*a), y+(64*16*b), z+(64*16*c));
+        cube(1);
+        GL11.glPopMatrix();
     }
 
     public void cube(int f){

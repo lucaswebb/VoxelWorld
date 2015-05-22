@@ -29,11 +29,14 @@ public class World {
         camaraz = a;
     }
     public void render(){
-        for(Chunk chunk : chunks){
-            chunk.render();
+        for(int i = 0; i < chunks.size(); i++){
+            System.out.println(chunks.get(i).getX() + " " + chunks.get(i).getY());
+            chunks.get(i).render();
+
         }
     }
+    public void getLocation(int x, int y, int z){
 
-
+    }
 
 }
