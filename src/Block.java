@@ -28,7 +28,7 @@ public class Block {
         if(canRender) {
             GL11.glPushMatrix();
             GL11.glTranslated(x+((16)*a), y+(64*16*b), z+(64*16*c));
-            cube(1);
+            cube(1000);
             GL11.glPopMatrix();
         }
     }
