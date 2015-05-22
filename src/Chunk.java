@@ -8,6 +8,7 @@ public class Chunk {
     private int x;  //Int determining which chunk it is
     private int y;
     private int z;
+    private int count = 0;
     Chunk(int a, int b, int c) {
         //Initialize Variables
         chunk = new Block[16][16][16];
@@ -26,9 +27,9 @@ public class Chunk {
     }
     public void addBlock(Block block) {
         //Adds block to a chunk
-        if(block.getX()<16&&block.getX()>0
-                &&block.getY()<16&&block.getY()>0
-                &&block.getZ()<16&&block.getZ()>-1) {
+        if(block.getX()<16&&block.getX()>=0
+                &&block.getY()<16&&block.getY()>=0
+                &&block.getZ()<16&&block.getZ()>=0) {
             if (chunk[block.getX()][block.getY()][block.getZ()] == null) {
                 chunk[block.getX()][block.getY()][block.getZ()] = block;
             }
@@ -51,7 +52,6 @@ public class Chunk {
 
     public boolean isAdjacentBlock(int x, int y, int z) {
         //used in render method.  Checks to see if a block has a gap next to it.
-        //System.out.println(chunk[x][y][z] != null);
         if (chunk[x][y][z] != null) {
             if (x == 0 || y == 0 || z == 0 || x == 15 || y == 15 || z == 15) {
                 return true;
@@ -76,7 +76,6 @@ public class Chunk {
             for (int j = 0; j < chunk[0].length; j++) {
                 for (int k = 0; k < chunk[0][0].length; k++) {
                     if(isAdjacentBlock(i,j,k)){
-
                         chunk[i][j][k].render(this.x, this.y, this.z);
                     }
                 }

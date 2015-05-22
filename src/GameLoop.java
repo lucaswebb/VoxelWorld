@@ -1,6 +1,3 @@
-/**
- * Created by lucaswebb on 5/15/15.
- */
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
@@ -13,12 +10,7 @@ import org.lwjgl.util.glu.GLU;
 
 public class GameLoop {
 
-    CameraControl camera = new CameraControl(0,0,0);
-    float movementSpeed = 10.0f;
-    float mouseSensitivity = 0.05f;
-    float dt = 0.0f;
-    float dx;
-    float dy;
+    CameraControl camera = new CameraControl();
     private World w;
 
     public void start(){
@@ -46,39 +38,16 @@ public class GameLoop {
     }
 
     public void update(){
-        dx = Mouse.getDX();
-        dy = Mouse.getDY();
-        dt = 1;
-
-        camera.incrementYaw(dx * mouseSensitivity);
-        camera.incrementPitch(dy * mouseSensitivity);
-
-        if (Keyboard.isKeyDown(Keyboard.KEY_W))//move forward
-        {
-            camera.walkForward(movementSpeed*dt);
-        }
-        if (Keyboard.isKeyDown(Keyboard.KEY_S))//move backwards
-        {
-            camera.walkBackwards(movementSpeed*dt);
-        }
-        if (Keyboard.isKeyDown(Keyboard.KEY_A))//strafe left
-        {
-            camera.strafeLeft(movementSpeed*dt);
-        }
-        if (Keyboard.isKeyDown(Keyboard.KEY_D))//strafe right
-        {
-            camera.strafeRight(movementSpeed*dt);
-        }
-        GL11.glLoadIdentity();
-        camera.lookThrough();
+        camera.acceptInput(1);
+        camera.apply();
     }
 
     public void initGL(){
         GL11.glMatrixMode(GL11.GL_PROJECTION);
         GL11.glLoadIdentity();
-        GL11.glOrtho(-50, 50, -50, 50, 600, -600);
-        //GLU.gluPerspective(360,(float)800/600,1000,-1000);
-        GLU.gluLookAt(0,0,0,0,0,-1,0,1,0);
+        //GL11.glOrtho(-50, 50, -50, 50, 600, -600);
+        GLU.gluPerspective(60,(float)800/600,600,-600);
+        GLU.gluLookAt(0,0,-20,10,0,0,0,1,0);
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
         w = new World();
         w.setUp();
@@ -87,6 +56,8 @@ public class GameLoop {
     public void renderGL() {
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
         GL11.glEnable(GL11.GL_DEPTH_TEST);
+        //Block b = new Block(0,0,-20,0,1,0,1);
+        //b.render(0, 0, 0);
         w.render();
     }
 
