@@ -73,4 +73,14 @@ public class Chunk {
             }
         }
     }
+
+    public void setUp(){
+        for (int i = 0; i < chunk.length; i++) {
+            for (int j = 0; j < chunk[0].length; j++) {
+                Block temp = new Block(i,j,0,0,1,0,1);
+                this.addBlock(temp);
+            }
+        }
+    }
+
 }

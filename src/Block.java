@@ -27,8 +27,8 @@ public class Block {
     public void render(int a, int b, int c){
         if(canRender) {
             GL11.glPushMatrix();
-            GL11.glTranslated(x+(64*a), y+(64*b), z+(64*c));
-            cube(100);
+            GL11.glTranslated(x+((16)*a), y+(64*16*b), z+(64*16*c));
+            cube(1);
             GL11.glPopMatrix();
         }
     }
@@ -38,40 +38,40 @@ public class Block {
         GL11.glColor4f(red, green, blue, alpha);
 
         // Top face
-        GL11.glVertex3d( 1.0*f, 1.0*f, -1.0*f);
-        GL11.glVertex3d(-1.0*f, 1.0*f, -1.0*f);
-        GL11.glVertex3d(-1.0*f, 1.0*f,  1.0*f);
+        GL11.glVertex3d( 1.0*f, 1.0*f, 0*f);
+        GL11.glVertex3d(0*f, 1.0*f, 0*f);
+        GL11.glVertex3d(0 *f, 1.0*f,  1.0*f);
         GL11.glVertex3d( 1.0*f, 1.0*f,  1.0*f);
 
         // Bottom face
-        GL11.glVertex3d( 1.0*f, -1.0*f,  1.0*f);
-        GL11.glVertex3d(-1.0*f, -1.0*f,  1.0*f);
-        GL11.glVertex3d(-1.0*f, -1.0*f, -1.0*f);
-        GL11.glVertex3d( 1.0*f, -1.0*f, -1.0*f);
+        GL11.glVertex3d( 1.0*f, 0*f,  1.0*f);
+        GL11.glVertex3d(0*f, 0*f,  1.0*f);
+        GL11.glVertex3d(0*f, 0*f, 0*f);
+        GL11.glVertex3d( 1.0*f, 0*f, 0*f);
 
         // Front face
         GL11.glVertex3d( 1.0*f,  1.0*f, 1.0*f);
-        GL11.glVertex3d(-1.0*f,  1.0*f, 1.0*f);
-        GL11.glVertex3d(-1.0*f, -1.0*f, 1.0*f);
-        GL11.glVertex3d( 1.0*f, -1.0*f, 1.0*f);
+        GL11.glVertex3d(0*f,  1.0*f, 1.0*f);
+        GL11.glVertex3d(0*f, 0*f, 1.0*f);
+        GL11.glVertex3d( 1.0*f, 0*f, 1.0*f);
 
         // Back face
-        GL11.glVertex3d( 1.0*f, -1.0*f, -1.0*f);
-        GL11.glVertex3d(-1.0*f, -1.0*f, -1.0*f);
-        GL11.glVertex3d(-1.0*f,  1.0*f, -1.0*f);
-        GL11.glVertex3d( 1.0*f,  1.0*f, -1.0*f);
+        GL11.glVertex3d( 1.0*f, 0*f, 0*f);
+        GL11.glVertex3d(0*f, 0*f, 0*f);
+        GL11.glVertex3d(0*f,  1.0*f, 0*f);
+        GL11.glVertex3d( 1.0*f,  1.0*f, 0*f);
 
         // Left face
-        GL11.glVertex3d(-1.0*f,  1.0*f,  1.0*f);
-        GL11.glVertex3d(-1.0*f,  1.0*f, -1.0*f);
-        GL11.glVertex3d(-1.0*f, -1.0*f, -1.0*f);
-        GL11.glVertex3d(-1.0*f, -1.0*f,  1.0*f);
+        GL11.glVertex3d(0*f,  1.0*f,  1.0*f);
+        GL11.glVertex3d(0*f,  1.0*f, 0*f);
+        GL11.glVertex3d(0*f, 0*f, 0*f);
+        GL11.glVertex3d(0*f, 0*f,  1.0*f);
 
         // Right face
-        GL11.glVertex3d(1.0*f,  1.0*f, -1.0*f);
+        GL11.glVertex3d(1.0*f,  1.0*f, 0*f);
         GL11.glVertex3d(1.0*f,  1.0*f,  1.0*f);
-        GL11.glVertex3d(1.0*f, -1.0*f,  1.0*f);
-        GL11.glVertex3d(1.0*f, -1.0*f, -1.0*f);
+        GL11.glVertex3d(1.0*f, 0*f,  1.0*f);
+        GL11.glVertex3d(1.0*f, 0*f, 0*f);
         GL11.glEnd();
     }
 
