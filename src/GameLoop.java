@@ -76,8 +76,8 @@ public class GameLoop {
         GL11.glMatrixMode(GL11.GL_PROJECTION);
         GL11.glLoadIdentity();
         //GL11.glOrtho(0, 800, 0, 600, 600, -600);
-        GLU.gluPerspective(90,(float)800/600,1000,-1000);
-        GLU.gluLookAt(0,0,0,0,0,0,0,1,0);
+        GLU.gluPerspective(60,(float)800/600,1000,-1000);
+        GLU.gluLookAt(0,0,0,0,0,-1,0,1,0);
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
     }
 
