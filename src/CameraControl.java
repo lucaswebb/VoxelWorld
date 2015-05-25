@@ -21,6 +21,15 @@ public class CameraControl {
         this.create();
     }
 
+    public int[] getPos(){
+        int[] temp = new int[3];
+        temp[0] = (int)pos.x;
+        temp[1] = (int)pos.y;
+        temp[2] = (int)pos.z;
+        return temp;
+    }
+
+
     public static void create() {
         pos = new Vector3f(0, 0, 0);
         rotation = new Vector3f(0, 0, 0);

@@ -38,7 +38,7 @@ public class Chunk {
 
     public void removeBlock(int x, int y, int z) {
         //removes a block from chunk
-        if(x<16&&x>0 &&y<16&&y>0 &&z<16&&z>0) {
+        if(x<16&&x>=0 &&y<16&&y>=0 &&z<16&&z>=0) {
             if (chunk[x][y][z] != null) {
                 chunk[x][y][z] = null;
             }
