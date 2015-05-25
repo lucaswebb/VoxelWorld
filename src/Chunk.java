@@ -9,6 +9,9 @@ public class Chunk {
     private int y;
     private int z;
     private int count = 0;
+
+    TerrainGen generator = new TerrainGen();
+
     Chunk(int a, int b, int c) {
         //Initialize Variables
         chunk = new Block[16][16][16];
@@ -16,6 +19,7 @@ public class Chunk {
         y = b;
         z = c;
     }
+
     public int getX() {
         return x;
     }
@@ -25,6 +29,7 @@ public class Chunk {
     public int getZ(){
         return z;
     }
+
     public void addBlock(Block block) {
         //Adds block to a chunk
         if(block.getX()<16&&block.getX()>=0
@@ -84,11 +89,26 @@ public class Chunk {
     }
 
     public void setUp(){
-        for (int i = 0; i < chunk.length; i++) {
+        for(int i=0;i<chunk.length;i++){
+            for(int j=0;j<chunk[0].length;j++){
+                int wx = 16 * this.getX() + i;
+                int wy = 16 * this.getY() + j;
+                System.out.println(wx);
+                int height = generator.getHeight(wx,wy);
+                Block temp = new Block(i,j,height,0,1,0,1);
+                this.addBlock(temp);
+                System.out.println(height);
+            }
+        }
+
+
+
+        /*for (int i = 0; i < chunk.length; i++) {
             for (int j = 0; j < chunk[0].length; j++) {
                 Block temp = new Block(i, j, 0, 0, 1, 0, 1);
                 this.addBlock(temp);
             }
         }
+        */
     }
 }

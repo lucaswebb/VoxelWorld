@@ -62,9 +62,9 @@ public class GameLoop {
         GL11.glEnable(GL11.GL_DEPTH_TEST);
         w.render();
         //System.out.println(camera.getPos()[0]+ " " + camera.getPos()[1] + " " +camera.getPos()[2]);
-        System.out.println(w.getChunkReal(camera.getPos()[0],camera.getPos()[1],camera.getPos()[2])[0]+" "
-                +w.getChunkReal(camera.getPos()[0],camera.getPos()[1],camera.getPos()[2])[1]+ " "+ w.getChunkReal(
-                camera.getPos()[0],camera.getPos()[1],camera.getPos()[2])[2]);
+        //System.out.println(w.getChunkReal(camera.getPos()[0], camera.getPos()[1], camera.getPos()[2])[0] + " "
+        //        + w.getChunkReal(camera.getPos()[0], camera.getPos()[1], camera.getPos()[2])[1] + " " + w.getChunkReal(
+        //        camera.getPos()[0], camera.getPos()[1], camera.getPos()[2])[2]);
     }
 
     public static void main(String[] args){

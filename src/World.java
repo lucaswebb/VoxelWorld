@@ -7,9 +7,13 @@ public class World {
     private int camarax = 0;
     private int camaray = 0;
     private int camaraz = 0;
+
+    TerrainGen generator = new TerrainGen();
+
     World(){
         chunks = new ArrayList<Chunk>();
     }
+
     public void setUp(){
         chunks.add(new Chunk(0,0,0));
         chunks.add(new Chunk(-1,0,0));
@@ -19,15 +23,19 @@ public class World {
             chunk.setUp();
         }
     }
+
     public void setCamaraX(int a){
         camarax = a;
     }
+
     public void setCamaraY(int a){
         camaray = a;
     }
+
     public void setCamaraZ(int a){
         camaraz = a;
     }
+
     public void render(){
         for(int i = 0; i < chunks.size(); i++){
             chunks.get(i).render();
