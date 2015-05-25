@@ -50,7 +50,7 @@ public class GameLoop {
         GL11.glLoadIdentity();
         //GL11.glOrtho(-50, 50, -50, 50, 600, -600);
         GLU.gluPerspective(60,(float)800/600,600,-600);
-        GLU.gluLookAt(0,0,-20,10,0,0,0,1,0);
+        GLU.gluLookAt(0,0,0,10,0,0,0,1,0);
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
         w = new World();
         w.setUp();

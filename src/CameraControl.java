@@ -33,9 +33,9 @@ public class CameraControl {
             rotation.y += 360;
         }
         GL11.glLoadIdentity();
-        GL11.glRotatef(rotation.x, 1, 0, 0);
+        GL11.glRotatef(rotation.x, 0, 0, 1);
         GL11.glRotatef(rotation.y, 0, 1, 0);
-        GL11.glRotatef(rotation.z, 0, 0, 1);
+        GL11.glRotatef(rotation.z, 1, 0, 0);
         GL11.glTranslatef(-pos.x, -pos.y, -pos.z);
     }
 
@@ -50,7 +50,7 @@ public class CameraControl {
             float mouseDX = Mouse.getDX();
             float mouseDY = Mouse.getDY();
             rotation.y += mouseDX * mouseSensitivity * delta;
-            rotation.x += mouseDY * mouseSensitivity * delta;
+            rotation.x += -mouseDY * mouseSensitivity * delta;
             rotation.x = Math.max(-maxLook, Math.min(maxLook, rotation.x));
         }
     }
@@ -96,19 +96,19 @@ public class CameraControl {
             pos.y -= speed;
         }
 
-        if(keyUp) {
+        if(keyRight) {
             pos.x -= Math.sin(Math.toRadians(rotation.y)) * speed;
             pos.z += Math.cos(Math.toRadians(rotation.y)) * speed;
         }
-        if(keyDown) {
+        if(keyLeft) {
             pos.x += Math.sin(Math.toRadians(rotation.y)) * speed;
             pos.z -= Math.cos(Math.toRadians(rotation.y)) * speed;
         }
-        if(keyRight) {
+        if(keyDown) {
             pos.x += Math.sin(Math.toRadians(rotation.y - 90)) * speed;
             pos.z -= Math.cos(Math.toRadians(rotation.y - 90)) * speed;
         }
-        if(keyLeft) {
+        if(keyUp) {
             pos.x += Math.sin(Math.toRadians(rotation.y + 90)) * speed;
             pos.z -= Math.cos(Math.toRadians(rotation.y + 90)) * speed;
         }
