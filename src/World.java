@@ -39,10 +39,54 @@ public class World {
         for(int i = 0; i < chunks.size(); i++){
             if(chunks.get(i).getX()==temp[0]&&chunks.get(i).getY()==temp[1]&&chunks.get(i).getZ()==temp[2])
             {
-                b.setX(Math.abs(b.getX()));
-                b.setY(Math.abs(b.getY()));
-                b.setZ(Math.abs(b.getZ()));
+                if(b.getX()>=0) {
+                    b.setX(Math.abs(b.getX()));
+                }
+                else{
+                    b.setX(16-Math.abs(b.getX()));
+                }
+                if(b.getY()>=0) {
+                    b.setY(Math.abs(b.getY()));
+                }
+                else{
+                    b.setY(16 - Math.abs(b.getY()));
+                }
+                if(b.getZ()>=0) {
+                     b.setZ(Math.abs(b.getZ()));
+                }
+                else{
+                    b.setZ(16-Math.abs(b.getZ()));
+                }
                 chunks.get(i).addBlock(b);
+            }
+        }
+
+    }
+
+    public void removeBlock(Block b){
+        int[] temp = getChunkFake(b.getX(), b.getY(), b.getZ());
+        for(int i = 0; i < chunks.size(); i++){
+            if(chunks.get(i).getX()==temp[0]&&chunks.get(i).getY()==temp[1]&&chunks.get(i).getZ()==temp[2])
+            {
+                if(b.getX()>=0) {
+                    b.setX(Math.abs(b.getX()));
+                }
+                else{
+                    b.setX(16-Math.abs(b.getX()));
+                }
+                if(b.getY()>=0) {
+                    b.setY(Math.abs(b.getY()));
+                }
+                else{
+                    b.setY(16-Math.abs(b.getY()));
+                }
+                if(b.getZ()>=0) {
+                    b.setZ(Math.abs(b.getZ()));
+                }
+                else{
+                    b.setZ(16-Math.abs(b.getZ()));
+                }
+                chunks.get(i).removeBlock(b.getX(),b.getY(),b.getZ());
             }
         }
 
@@ -51,16 +95,46 @@ public class World {
 
     public int[] getChunkReal(int x, int y, int z){
         int[] ans = new int[3];
-        ans[0] = x/8000;
-        ans[1] = y/8000;
-        ans[2] = z/8000;
+        if(x>=0){
+            ans[0] = x/8000;
+        }
+        else{
+            ans[0] = (x/8000) -1;
+        }
+        if(z>=0) {
+            ans[1] = z / 8000;
+        }
+        else{
+            ans[1] = (z/8000) -1;
+        }
+        if(y>=0) {
+            ans[2] = y / 8000;
+        }
+        else{
+            ans[2] = y/8000 - 1;
+        }
         return ans;
     }
     public int[] getChunkFake(int x, int y, int z){
         int[] ans = new int[3];
-        ans[0] = x/16;
-        ans[1] = y/16;
-        ans[2] = z/16;
+        if(x>=0){
+            ans[0] = x/16;
+        }
+        else{
+            ans[0] = (x/16) -1;
+        }
+        if(y>=0) {
+            ans[1] = y / 16;
+        }
+        else{
+            ans[1] = (y/16) -1;
+        }
+        if(z>=0) {
+            ans[2] = z / 16;
+        }
+        else{
+            ans[2] = z/16 - 1;
+        }
         return ans;
     }
 }

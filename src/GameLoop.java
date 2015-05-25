@@ -54,19 +54,17 @@ public class GameLoop {
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
         w = new World();
         w.setUp();
+
     }
 
     public void renderGL() {
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
         GL11.glEnable(GL11.GL_DEPTH_TEST);
-        Block b = new Block(0,0,1,0,1,0,1);
-        Block b1 = new Block(-10,5,1,1,0,0,1);
-        Block b2 = new Block(10,5,1,1,0,0,1);
-        //b.render(0, 0, 0);
         w.render();
-        w.addBlock(b);
-        w.addBlock(b1);
-        w.addBlock(b2);
+        //System.out.println(camera.getPos()[0]+ " " + camera.getPos()[1] + " " +camera.getPos()[2]);
+        System.out.println(w.getChunkReal(camera.getPos()[0],camera.getPos()[1],camera.getPos()[2])[0]+" "
+                +w.getChunkReal(camera.getPos()[0],camera.getPos()[1],camera.getPos()[2])[1]+ " "+ w.getChunkReal(
+                camera.getPos()[0],camera.getPos()[1],camera.getPos()[2])[2]);
     }
 
     public static void main(String[] args){
