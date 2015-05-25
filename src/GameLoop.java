@@ -59,9 +59,14 @@ public class GameLoop {
     public void renderGL() {
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
         GL11.glEnable(GL11.GL_DEPTH_TEST);
-        //Block b = new Block(0,0,-20,0,1,0,1);
+        Block b = new Block(0,0,1,0,1,0,1);
+        Block b1 = new Block(-10,5,1,1,0,0,1);
+        Block b2 = new Block(10,5,1,1,0,0,1);
         //b.render(0, 0, 0);
         w.render();
+        w.addBlock(b);
+        w.addBlock(b1);
+        w.addBlock(b2);
     }
 
     public static void main(String[] args){

@@ -33,8 +33,34 @@ public class World {
             chunks.get(i).render();
         }
     }
-    public void getLocation(int x, int y, int z){
+
+    public void addBlock(Block b){
+        int[] temp = getChunkFake(b.getX(), b.getY(), b.getZ());
+        for(int i = 0; i < chunks.size(); i++){
+            if(chunks.get(i).getX()==temp[0]&&chunks.get(i).getY()==temp[1]&&chunks.get(i).getZ()==temp[2])
+            {
+                b.setX(Math.abs(b.getX()));
+                b.setY(Math.abs(b.getY()));
+                b.setZ(Math.abs(b.getZ()));
+                chunks.get(i).addBlock(b);
+            }
+        }
 
     }
 
+
+    public int[] getChunkReal(int x, int y, int z){
+        int[] ans = new int[3];
+        ans[0] = x/8000;
+        ans[1] = y/8000;
+        ans[2] = z/8000;
+        return ans;
+    }
+    public int[] getChunkFake(int x, int y, int z){
+        int[] ans = new int[3];
+        ans[0] = x/16;
+        ans[1] = y/16;
+        ans[2] = z/16;
+        return ans;
+    }
 }

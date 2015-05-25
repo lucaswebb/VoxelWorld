@@ -122,6 +122,17 @@ public class Block {
     public int getZ(){
         return z;
     }
+
+
+    public void setX(int a) {
+        x =a;
+    }
+    public void setY(int a){
+        y =a;
+    }
+    public void setZ(int a){
+        z = a;
+    }
     public float getRed() {
         return red;
     }
