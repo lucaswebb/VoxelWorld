@@ -9,12 +9,20 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.GLU;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 
 public class GameLoop {
 
     CameraControl camera = new CameraControl();
     private World w;
+    private float redPlace = 1;
+    private float bluePlace = 1;
+    private float greenPlace = 1;
+    private float alphaPlace = 1;
+    private String input;
+    boolean singleClick = false;
 
     public void start(){
         try {
@@ -45,6 +53,7 @@ public class GameLoop {
         w.setCamera(camera.getPos());
         w.render();
         placeRemoveBlocks();
+        colorSelector();
     }
 
 
@@ -54,27 +63,50 @@ public class GameLoop {
         for(int i = 1; i < 6; i++){
             temp = new Block(camera.getPos()[0]+(int)(500*i*Math.cos(camera.getRot()[1]*(2*Math.PI/360))),
                     camera.getPos()[2]+(int)(500*i*Math.sin(camera.getRot()[1]*(2*Math.PI/360))),
-                    camera.getPos()[1]+(int)(500*i*-Math.sin(camera.getRot()[0]*(2*Math.PI/360))),1,0,0,1);
+                    camera.getPos()[1]+(int)(500*i*-Math.sin(camera.getRot()[0]*(2*Math.PI/360))),redPlace,greenPlace,bluePlace,alphaPlace);
             if(w.blockInWorld(temp)){
                 blocksNeeded=i;
                 break;
             }
         }
-        System.out.println(blocksNeeded);
-        if(blocksNeeded>1) {
+        if(blocksNeeded>1 && singleClick == false) {
             if (Mouse.isButtonDown(0)) {
                 temp = new Block(camera.getPos()[0] + (int) (500*(blocksNeeded-1) * Math.cos(camera.getRot()[1] * (2 * Math.PI / 360))),
                         camera.getPos()[2] + (int) (500*(blocksNeeded-1) * Math.sin(camera.getRot()[1] * (2 * Math.PI / 360))),
-                        camera.getPos()[1] + (int) (500*(blocksNeeded-1) * -Math.sin(camera.getRot()[0] * (2 * Math.PI / 360))), 1, 0, 0, 1);
+                        camera.getPos()[1] + (int) (500*(blocksNeeded-1) * -Math.sin(camera.getRot()[0] * (2 * Math.PI / 360))),redPlace,greenPlace,bluePlace,alphaPlace);
                 w.addBlock(temp);
+                singleClick = true;
             } else if (Mouse.isButtonDown(1)) {
                 temp = new Block(camera.getPos()[0] + (int) (500*blocksNeeded * Math.cos(camera.getRot()[1] * (2 * Math.PI / 360))),
                         camera.getPos()[2] + (int) (500*blocksNeeded * Math.sin(camera.getRot()[1] * (2 * Math.PI / 360))),
-                        camera.getPos()[1] + (int) (500*blocksNeeded * -Math.sin(camera.getRot()[0] * (2 * Math.PI / 360))), 1, 0, 0, 1);
+                        camera.getPos()[1] + (int) (500*blocksNeeded * -Math.sin(camera.getRot()[0] * (2 * Math.PI / 360))), redPlace,greenPlace,bluePlace,alphaPlace);
                 w.removeBlock(temp);
+                singleClick = true;
             }
         }
+        if(!Mouse.isButtonDown(0)&&!Mouse.isButtonDown(1)){
+            System.out.println("true");
+            singleClick = false;
+        }
     }
+
+    public void colorSelector(){
+        if(Keyboard.isKeyDown(Keyboard.KEY_Q)){
+            input = JOptionPane.showInputDialog(null, "Choose Red:", "Color Selector",
+                    JOptionPane.PLAIN_MESSAGE);
+            redPlace = Float.parseFloat(input);
+            input = JOptionPane.showInputDialog(null, "Choose Green:", "Color Selector",
+                    JOptionPane.PLAIN_MESSAGE);
+            greenPlace = Float.parseFloat(input);
+            input = JOptionPane.showInputDialog(null, "Choose Blue:", "Color Selector",
+                    JOptionPane.PLAIN_MESSAGE);
+            bluePlace = Float.parseFloat(input);
+            input = JOptionPane.showInputDialog(null, "Choose Alpha:", "Color Selector",
+                    JOptionPane.PLAIN_MESSAGE);
+            alphaPlace = Float.parseFloat(input);
+        }
+    }
+
 
     public void update(){
         camera.acceptInput(1);
