@@ -29,6 +29,33 @@ public class World {
         cameraz = a[2];
     }
 
+    public boolean blockInWorld(Block b){
+        int[] temp = getChunkReal(b.getX(), b.getZ(), b.getY());
+        for(int i = 0; i < chunks.size(); i++){
+            if(chunks.get(i).getX()==temp[0]&&chunks.get(i).getY()==temp[1]&&chunks.get(i).getZ()==temp[2])
+            {
+            if(b.getX()>=0) {
+                b.setX(Math.abs((b.getX()-8000*chunks.get(i).getX())/500));
+            }
+            else{
+                b.setX(Math.abs((b.getX()-8000*chunks.get(i).getX())/500));
+            }
+            if(b.getY()>=0) {
+                b.setY(Math.abs((b.getY()-8000*chunks.get(i).getY())/500));
+            }
+            else {
+                b.setY(Math.abs((b.getY()-8000*chunks.get(i).getY())/500));
+            }
+            if(b.getZ()>=0) {
+                b.setZ(Math.abs(b.getZ())/500);
+            } else {
+                b.setZ(16-Math.abs(b.getZ())/500);
+            }
+            return chunks.get(i).checkBlock(b);
+            }
+        }
+        return false;
+    }
 
 
     public void render(){
@@ -47,58 +74,91 @@ public class World {
     }
 
     public void addBlock(Block b){
-        int[] temp = getChunkFake(b.getX(), b.getY(), b.getZ());
+        int[] temp = getChunkReal(b.getX(), b.getZ(), b.getY());
         for(int i = 0; i < chunks.size(); i++){
             if(chunks.get(i).getX()==temp[0]&&chunks.get(i).getY()==temp[1]&&chunks.get(i).getZ()==temp[2])
             {
+                //System.out.println(chunks.get(i).getX()+" "+chunks.get(i).getY());
+                //System.out.println(b.getZ());
                 if(b.getX()>=0) {
-                    b.setX(Math.abs(b.getX()));
+                    b.setX(Math.abs((b.getX()-8000*chunks.get(i).getX())/500));
                 }
                 else{
-                    b.setX(16-Math.abs(b.getX()));
+                    b.setX(Math.abs((b.getX()-8000*chunks.get(i).getX())/500));
                 }
                 if(b.getY()>=0) {
-                    b.setY(Math.abs(b.getY()));
+                    b.setY(Math.abs((b.getY()-8000*chunks.get(i).getY())/500));
                 }
-                else{
-                    b.setY(16 - Math.abs(b.getY()));
+                else {
+                    b.setY(Math.abs((b.getY()-8000*chunks.get(i).getY())/500));
                 }
                 if(b.getZ()>=0) {
-                     b.setZ(Math.abs(b.getZ()));
+                    b.setZ(Math.abs(b.getZ())/500);
                 }
-                else{
-                    b.setZ(16-Math.abs(b.getZ()));
+                else {
+                    b.setZ(16-Math.abs(b.getZ())/500);
                 }
                 chunks.get(i).addBlock(b);
             }
         }
-
     }
 
-    public void removeBlock(Block b){
-        int[] temp = getChunkFake(b.getX(), b.getY(), b.getZ());
+    public void highlightBlock(Block b){
+        int[] temp = getChunkReal(b.getX(), b.getZ(), b.getY());
         for(int i = 0; i < chunks.size(); i++){
             if(chunks.get(i).getX()==temp[0]&&chunks.get(i).getY()==temp[1]&&chunks.get(i).getZ()==temp[2])
             {
+                //System.out.println(chunks.get(i).getX()+" "+chunks.get(i).getY());
+                //System.out.println(b.getZ());
                 if(b.getX()>=0) {
-                    b.setX(Math.abs(b.getX()));
+                    b.setX(Math.abs((b.getX()-8000*chunks.get(i).getX())/500));
                 }
                 else{
-                    b.setX(16-Math.abs(b.getX()));
+                    b.setX(Math.abs((b.getX()-8000*chunks.get(i).getX())/500));
                 }
                 if(b.getY()>=0) {
-                    b.setY(Math.abs(b.getY()));
+                    b.setY(Math.abs((b.getY()-8000*chunks.get(i).getY())/500));
                 }
-                else{
-                    b.setY(16-Math.abs(b.getY()));
+                else {
+                    b.setY(Math.abs((b.getY()-8000*chunks.get(i).getY())/500));
                 }
                 if(b.getZ()>=0) {
-                    b.setZ(Math.abs(b.getZ()));
+                    b.setZ(Math.abs(b.getZ())/500);
+                }
+                else {
+                    b.setZ(16-Math.abs(b.getZ())/500);
+                }
+                chunks.get(i).highlighBlock(b);
+            }
+        }
+    }
+
+    public void removeBlock(Block b){
+        int[] temp = getChunkReal(b.getX(), b.getZ(), b.getY());
+        for(int i = 0; i < chunks.size(); i++){
+            if(chunks.get(i).getX()==temp[0]&&chunks.get(i).getY()==temp[1]&&chunks.get(i).getZ()==temp[2])
+            {
+                //System.out.println(chunks.get(i).getX()+" "+chunks.get(i).getY());
+                //System.out.println(b.getZ());
+                if(b.getX()>=0) {
+                    b.setX(Math.abs((b.getX()-8000*chunks.get(i).getX())/500));
                 }
                 else{
-                    b.setZ(16-Math.abs(b.getZ()));
+                    b.setX(Math.abs((b.getX()-8000*chunks.get(i).getX())/500));
                 }
-                chunks.get(i).removeBlock(b.getX(),b.getY(),b.getZ());
+                if(b.getY()>=0) {
+                    b.setY(Math.abs((b.getY()-8000*chunks.get(i).getY())/500));
+                }
+                else {
+                    b.setY(Math.abs((b.getY()-8000*chunks.get(i).getY())/500));
+                }
+                if(b.getZ()>=0) {
+                    b.setZ(Math.abs(b.getZ())/500);
+                }
+                else {
+                    b.setZ(16-Math.abs(b.getZ())/500);
+                }
+                chunks.get(i).removeBlock(b.getX(), b.getY(), b.getZ());
             }
         }
     }

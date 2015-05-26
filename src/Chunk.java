@@ -41,6 +41,37 @@ public class Chunk {
         }
     }
 
+    public boolean checkBlock(Block block) {
+        //Adds block to a chunk
+        if(block.getX()<16&&block.getX()>=0
+                &&block.getY()<16&&block.getY()>=0
+                &&block.getZ()<16&&block.getZ()>=0) {
+            if (chunk[block.getX()][block.getY()][block.getZ()] != null) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    public void highlighBlock(Block block) {
+        //highlightBlock
+        if(block.getX()<16&&block.getX()>=0
+                &&block.getY()<16&&block.getY()>=0
+                &&block.getZ()<16&&block.getZ()>=0) {
+            if (chunk[block.getX()][block.getY()][block.getZ()] != null) {
+                chunk[block.getX()][block.getY()][block.getZ()].setRed(chunk[block.getX()][block.getY()][block.getZ()].getRed()+.2f);
+                chunk[block.getX()][block.getY()][block.getZ()].setGreen(chunk[block.getX()][block.getY()][block.getZ()].getGreen() + .2f);
+                chunk[block.getX()][block.getY()][block.getZ()].setBlue(chunk[block.getX()][block.getY()][block.getZ()].getBlue() + .2f);
+                chunk[block.getX()][block.getY()][block.getZ()].setAlpha(chunk[block.getX()][block.getY()][block.getZ()].getAlpha()-1f);
+            }
+            else{
+                addBlock(block);
+            }
+        }
+    }
+
+
     public void removeBlock(int x, int y, int z) {
         //removes a block from chunk
         if(x<16&&x>=0 &&y<16&&y>=0 &&z<16&&z>=0) {

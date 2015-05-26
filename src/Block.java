@@ -145,4 +145,15 @@ public class Block {
     public float getAlpha() {
         return alpha;
     }
+    public void setRed(float a) {
+        red =a;
+    }
+    public void setGreen(float a){
+        green =a;
+    }
+    public void setBlue(float a){ blue = a;}
+    public void setAlpha(float a){
+        alpha = a;
+    }
 }
+
