@@ -23,6 +23,7 @@ public class GameLoop {
         } catch (LWJGLException e) {
             e.printStackTrace();
             System.exit(0);
+
         }
         initGL(); // init OpenGL
 
@@ -40,6 +41,13 @@ public class GameLoop {
         Display.destroy();
     }
 
+    public void manageGame(){
+        w.setCamera(camera.getPos());
+        w.render();
+        System.out.println();
+    }
+
+
     public void update(){
         camera.acceptInput(1);
         camera.apply();
@@ -53,14 +61,14 @@ public class GameLoop {
         GLU.gluLookAt(0,0,0,10,0,0,0,1,0);
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
         w = new World();
-        w.setUp();
+        //w.setUp();
 
     }
 
     public void renderGL() {
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
         GL11.glEnable(GL11.GL_DEPTH_TEST);
-        w.render();
+        manageGame();
         //System.out.println(camera.getPos()[0]+ " " + camera.getPos()[1] + " " +camera.getPos()[2]);
         //System.out.println(w.getChunkReal(camera.getPos()[0], camera.getPos()[1], camera.getPos()[2])[0] + " "
         //        + w.getChunkReal(camera.getPos()[0], camera.getPos()[1], camera.getPos()[2])[1] + " " + w.getChunkReal(

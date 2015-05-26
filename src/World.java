@@ -4,9 +4,9 @@
 import java.util.ArrayList;
 public class World {
     private ArrayList<Chunk> chunks;
-    private int camarax = 0;
-    private int camaray = 0;
-    private int camaraz = 0;
+    private int camerax = 0;
+    private int cameray = 0;
+    private int cameraz = 0;
 
     TerrainGen generator = new TerrainGen();
 
@@ -23,22 +23,26 @@ public class World {
             chunk.setUp();
         }
     }
-
-    public void setCamaraX(int a){
-        camarax = a;
+    public void setCamera(int[] a){
+        camerax = a[0];
+        cameray = a[1];
+        cameraz = a[2];
     }
 
-    public void setCamaraY(int a){
-        camaray = a;
-    }
 
-    public void setCamaraZ(int a){
-        camaraz = a;
-    }
 
     public void render(){
-        for(int i = 0; i < chunks.size(); i++){
-            chunks.get(i).render();
+        for(int i = -1; i < 2; i++){
+            for(int k = -1; k < 2; k++){
+                if(isInWorld(getChunkReal(camerax,0,cameraz),i,k,0)>=0){
+                    chunks.get(isInWorld(getChunkReal(camerax,0,cameraz),i,k,0)).render();
+                } else {
+                    chunks.add(new Chunk(getChunkReal(camerax, 0, cameraz)[0]+i
+                            ,getChunkReal(camerax, 0, cameraz)[1]+k
+                            ,getChunkReal(camerax,0,cameraz)[2]));
+                    chunks.get(isInWorld(getChunkReal(camerax,0,cameraz),i,k,0)).setUp();
+                }
+            }
         }
     }
 
@@ -97,8 +101,20 @@ public class World {
                 chunks.get(i).removeBlock(b.getX(),b.getY(),b.getZ());
             }
         }
-
     }
+
+    public int isInWorld(int[] a, int shiftX, int shiftY, int shiftZ){
+        for(int i = 0; i < chunks.size(); i++){
+           if(chunks.get(i).getX()==a[0] + shiftX&&
+                   chunks.get(i).getY()==a[1] + shiftY&&
+                   chunks.get(i).getZ()==a[2] + shiftZ
+            ){
+               return i;
+           }
+        }
+        return -1;
+    }
+
 
 
     public int[] getChunkReal(int x, int y, int z){
@@ -123,6 +139,7 @@ public class World {
         }
         return ans;
     }
+
     public int[] getChunkFake(int x, int y, int z){
         int[] ans = new int[3];
         if(x>=0){

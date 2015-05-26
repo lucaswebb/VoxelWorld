@@ -89,7 +89,7 @@ public class Chunk {
     }
 
     public void setUp(){
-        for(int i=0;i<chunk.length;i++){
+        /*for(int i=0;i<chunk.length;i++){
             for(int j=0;j<chunk[0].length;j++){
                 int wx = 16 * this.getX() + i;
                 int wy = 16 * this.getY() + j;
@@ -99,16 +99,22 @@ public class Chunk {
                 this.addBlock(temp);
                 System.out.println(height);
             }
-        }
+        }*/
 
 
 
-        /*for (int i = 0; i < chunk.length; i++) {
+        for(int i = 0; i < chunk.length; i++) {
             for (int j = 0; j < chunk[0].length; j++) {
-                Block temp = new Block(i, j, 0, 0, 1, 0, 1);
-                this.addBlock(temp);
+                if(j==0||j==15 && i==0||i==15) {
+                    Block temp = new Block(i, j, 0, 0, 1, 0, 1);
+                    this.addBlock(temp);
+                }
+                else{
+                    Block temp = new Block(i, j, 0, 0, 0, 1, 1);
+                    this.addBlock(temp);
+                }
             }
         }
-        */
+
     }
 }
