@@ -31,14 +31,6 @@ public class Block {
         GL11.glPopMatrix();
     }
 
-    public void renderHighlight(){
-        //FLIP Y AND Z
-        GL11.glPushMatrix();
-        GL11.glTranslated(x,y,z);
-        cube(500);
-        GL11.glPopMatrix();
-    }
-
     public void cube(int f){
         GL11.glBegin(GL11.GL_QUADS);
         GL11.glColor4f(red, green, blue, alpha);
@@ -80,7 +72,7 @@ public class Block {
         GL11.glVertex3d(1.0*f, 0*f, 0*f);
         GL11.glEnd();
 
-        GL11.glBegin(GL11.GL_LINES);
+        /*GL11.glBegin(GL11.GL_LINES);
         GL11.glColor4f(0, 0, 0, 1);
 
         // Top face
@@ -118,7 +110,7 @@ public class Block {
         GL11.glVertex3d(1.0*f,  1.0*f,  1.0*f);
         GL11.glVertex3d(1.0*f, 0*f,  1.0*f);
         GL11.glVertex3d(1.0*f, 0*f, 0*f);
-        GL11.glEnd();
+        GL11.glEnd();*/
     }
 
     public int getX() {

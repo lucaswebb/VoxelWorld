@@ -10,7 +10,7 @@ public class TerrainGen {
     }
 
     public float getHeight(int x, int y){
-        float height = Math.abs(10*p.perlin2D((float)x,(float)y));
+        float height = Math.abs(20*p.perlin2D((float)x,(float)y));
         return height;
     }
 }
