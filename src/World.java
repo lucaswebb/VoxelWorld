@@ -96,9 +96,6 @@ public class World {
                 if(b.getZ()>=0) {
                     b.setZ(Math.abs(b.getZ())/500);
                 }
-                else {
-                    b.setZ(16-Math.abs(b.getZ())/500);
-                }
                 chunks.get(i).addBlock(b);
             }
         }
@@ -200,10 +197,10 @@ public class World {
             ans[1] = (z/8000) -1;
         }
         if(y>=0) {
-            ans[2] = y / 8000;
+            ans[2] = y / 64000;
         }
         else{
-            ans[2] = y/8000 - 1;
+            ans[2] = y/64000 - 1;
         }
         return ans;
     }

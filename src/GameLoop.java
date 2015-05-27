@@ -64,11 +64,12 @@ public class GameLoop {
             temp = new Block(camera.getPos()[0]+(int)(500*i*Math.cos(camera.getRot()[1]*(2*Math.PI/360))),
                     camera.getPos()[2]+(int)(500*i*Math.sin(camera.getRot()[1]*(2*Math.PI/360))),
                     camera.getPos()[1]+(int)(500*i*-Math.sin(camera.getRot()[0]*(2*Math.PI/360))),redPlace,greenPlace,bluePlace,alphaPlace);
-            if(w.blockInWorld(temp)){
-                blocksNeeded=i;
+            if(w.blockInWorld(temp)) {
+                blocksNeeded = i;
                 break;
             }
         }
+        System.out.println(camera.getRot()[0]+" "+camera.getRot()[1]+" "+camera.getRot());
         if(blocksNeeded>1) {
             Block highlight = new Block(camera.getPos()[0] + (int) (500 * (blocksNeeded - 1) * Math.cos(camera.getRot()[1] * (2 * Math.PI / 360))),
                     camera.getPos()[2] + (int) (500 * (blocksNeeded - 1) * Math.sin(camera.getRot()[1] * (2 * Math.PI / 360))),

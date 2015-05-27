@@ -14,7 +14,7 @@ public class Chunk {
 
     Chunk(int a, int b, int c) {
         //Initialize Variables
-        chunk = new Block[16][16][16];
+        chunk = new Block[16][16][128];
         x = a;
         y = b;
         z = c;
@@ -34,7 +34,7 @@ public class Chunk {
         //Adds block to a chunk
         if(block.getX()<16&&block.getX()>=0
                 &&block.getY()<16&&block.getY()>=0
-                &&block.getZ()<16&&block.getZ()>=0) {
+                &&block.getZ()<128&&block.getZ()>=0) {
             if (chunk[block.getX()][block.getY()][block.getZ()] == null) {
                 chunk[block.getX()][block.getY()][block.getZ()] = block;
             }
@@ -45,7 +45,7 @@ public class Chunk {
         //Adds block to a chunk
         if(block.getX()<16&&block.getX()>=0
                 &&block.getY()<16&&block.getY()>=0
-                &&block.getZ()<16&&block.getZ()>=0) {
+                &&block.getZ()<128&&block.getZ()>=0) {
             if (chunk[block.getX()][block.getY()][block.getZ()] != null) {
                 return true;
             }
@@ -58,7 +58,7 @@ public class Chunk {
         //highlightBlock
         if(block.getX()<16&&block.getX()>=0
                 &&block.getY()<16&&block.getY()>=0
-                &&block.getZ()<16&&block.getZ()>=0) {
+                &&block.getZ()<128&&block.getZ()>=0) {
             if (chunk[block.getX()][block.getY()][block.getZ()] != null) {
                 chunk[block.getX()][block.getY()][block.getZ()].setRed(chunk[block.getX()][block.getY()][block.getZ()].getRed()+.2f);
                 chunk[block.getX()][block.getY()][block.getZ()].setGreen(chunk[block.getX()][block.getY()][block.getZ()].getGreen() + .2f);
@@ -74,7 +74,7 @@ public class Chunk {
 
     public void removeBlock(int x, int y, int z) {
         //removes a block from chunk
-        if(x<16&&x>=0 &&y<16&&y>=0 &&z<16&&z>=0) {
+        if(x<16&&x>=0 &&y<16&&y>=0 &&z<128&&z>=0) {
             if (chunk[x][y][z] != null) {
                 chunk[x][y][z] = null;
             }
@@ -89,7 +89,7 @@ public class Chunk {
     public boolean isAdjacentBlock(int x, int y, int z) {
         //used in render method.  Checks to see if a block has a gap next to it.
         if (chunk[x][y][z] != null) {
-            if (x == 0 || y == 0 || z == 0 || x == 15 || y == 15 || z == 15) {
+            if (x == 0 || y == 0 || z == 0 || x == 15 || y == 15 || z == 127) {
                 return true;
             } else if (chunk[x + 1][y][z] == null ||
                     chunk[x - 1][y][z] == null ||
