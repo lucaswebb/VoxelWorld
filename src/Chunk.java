@@ -126,7 +126,7 @@ public class Chunk {
                 int wy = 16 * this.getY() + j;
                 float height = generator.getHeight(wx,wy);
                 for(int h=(int)height;h>=0;h--) {
-                    Block temp = new Block(i, j, h, height/32, (32-(2*Math.abs(5.5f-height)))/32, (11-height)/11, 1);
+                    Block temp = new Block(i, j, h, height/32, (32-(2*Math.abs(10.5f-height)))/32, (32-height)/32, 1);
                     this.addBlock(temp);
                 }
             }
