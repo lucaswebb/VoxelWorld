@@ -8,14 +8,16 @@
 
 public class Perlin {
     public static final float P = 0.5f;
-    public static final int OCTAVES = 8;
+    public static final int OCTAVES = 1;
 
     public static float perlin2D(float x, float y) {
         float total = 0.0f;
 
         for (int i = 0; i < OCTAVES; i++) {
-            int frequency = (int) Math.pow(2, i);
-            float amplitude = (float) Math.pow(P, i);
+            //int frequency = (int) Math.pow(2, i);
+            float frequency = 0.1f;
+            //float amplitude = (float) Math.pow(P, i);
+            float amplitude = 3;
 
             total += Noise2D.interpolate(x * frequency, y * frequency, Noise1D.primes[0]) * amplitude;
         }

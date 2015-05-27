@@ -8,7 +8,7 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.input.Keyboard;
 
 public class CameraControl {
-    public static float moveSpeed = 50.0f;
+    public static float moveSpeed = 150.0f;
 
     private static float maxLook = 85;
 
