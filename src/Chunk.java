@@ -54,19 +54,13 @@ public class Chunk {
     }
 
 
-    public void highlighBlock(Block block) {
+    public void highlightBlock(Block block) {
         //highlightBlock
         if(block.getX()<16&&block.getX()>=0
                 &&block.getY()<16&&block.getY()>=0
                 &&block.getZ()<128&&block.getZ()>=0) {
-            if (chunk[block.getX()][block.getY()][block.getZ()] != null) {
-                chunk[block.getX()][block.getY()][block.getZ()].setRed(chunk[block.getX()][block.getY()][block.getZ()].getRed()+.2f);
-                chunk[block.getX()][block.getY()][block.getZ()].setGreen(chunk[block.getX()][block.getY()][block.getZ()].getGreen() + .2f);
-                chunk[block.getX()][block.getY()][block.getZ()].setBlue(chunk[block.getX()][block.getY()][block.getZ()].getBlue() + .2f);
-                chunk[block.getX()][block.getY()][block.getZ()].setAlpha(chunk[block.getX()][block.getY()][block.getZ()].getAlpha()-1f);
-            }
-            else{
-                addBlock(block);
+            if (chunk[block.getX()][block.getY()][block.getZ()] == null) {
+                block.render(this.x,this.y,this.z);
             }
         }
     }

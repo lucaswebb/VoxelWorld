@@ -97,41 +97,36 @@ public class World {
                     b.setZ(Math.abs(b.getZ())/500);
                 }
                 chunks.get(i).addBlock(b);
+                System.out.println("ADD:"+b.getX()+" "+b.getY()+" "+b.getZ());
             }
         }
     }
 
-    public int[] highlightBlock(Block b){
+    public void highlightBlock(Block b){
         int[] temp = getChunkReal(b.getX(), b.getZ(), b.getY());
-        int[] ans = new int[4];
         for(int i = 0; i < chunks.size(); i++){
             if(chunks.get(i).getX()==temp[0]&&chunks.get(i).getY()==temp[1]&&chunks.get(i).getZ()==temp[2])
             {
                 //System.out.println(chunks.get(i).getX()+" "+chunks.get(i).getY());
                 //System.out.println(b.getZ());
                 if(b.getX()>=0) {
-                    ans[0] = Math.abs((b.getX()-8000*chunks.get(i).getX())/500);
+                    b.setX(Math.abs((b.getX()-8000*chunks.get(i).getX())/500));
                 }
                 else{
-                    ans[0] = (Math.abs((b.getX()-8000*chunks.get(i).getX())/500));
+                    b.setX(Math.abs((b.getX()-8000*chunks.get(i).getX())/500));
                 }
                 if(b.getY()>=0) {
-                    ans[1] = (Math.abs((b.getY()-8000*chunks.get(i).getY())/500));
+                    b.setY(Math.abs((b.getY()-8000*chunks.get(i).getY())/500));
                 }
                 else {
-                    ans[1] = (Math.abs((b.getY()-8000*chunks.get(i).getY())/500));
+                    b.setY(Math.abs((b.getY()-8000*chunks.get(i).getY())/500));
                 }
                 if(b.getZ()>=0) {
-                    ans[2] = (Math.abs(b.getZ())/500);
+                    b.setZ(Math.abs(b.getZ())/500);
                 }
-                else {
-                    ans[2] = (16-Math.abs(b.getZ())/500);
-                }
-                ans[3] = i;
-                return ans;
+                chunks.get(i).highlightBlock(b);
             }
         }
-        return ans;
     }
 
 
@@ -160,6 +155,7 @@ public class World {
                 else {
                     b.setZ(16-Math.abs(b.getZ())/500);
                 }
+                System.out.println("REMOVE:"+b.getX()+" "+b.getY()+" "+b.getZ());
                 chunks.get(i).removeBlock(b.getX(), b.getY(), b.getZ());
             }
         }
