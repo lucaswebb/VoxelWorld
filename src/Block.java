@@ -31,6 +31,14 @@ public class Block {
         GL11.glPopMatrix();
     }
 
+    public void renderHighlight(){
+        //FLIP Y AND Z
+        GL11.glPushMatrix();
+        GL11.glTranslated(x,y,z);
+        cube(500);
+        GL11.glPopMatrix();
+    }
+
     public void cube(int f){
         GL11.glBegin(GL11.GL_QUADS);
         GL11.glColor4f(red, green, blue, alpha);

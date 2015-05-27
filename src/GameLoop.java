@@ -69,23 +69,36 @@ public class GameLoop {
                 break;
             }
         }
-        if(blocksNeeded>1 && singleClick == false) {
-            if (Mouse.isButtonDown(0)) {
-                temp = new Block(camera.getPos()[0] + (int) (500*(blocksNeeded-1) * Math.cos(camera.getRot()[1] * (2 * Math.PI / 360))),
-                        camera.getPos()[2] + (int) (500*(blocksNeeded-1) * Math.sin(camera.getRot()[1] * (2 * Math.PI / 360))),
-                        camera.getPos()[1] + (int) (500*(blocksNeeded-1) * -Math.sin(camera.getRot()[0] * (2 * Math.PI / 360))),redPlace,greenPlace,bluePlace,alphaPlace);
-                w.addBlock(temp);
-                singleClick = true;
-            } else if (Mouse.isButtonDown(1)) {
-                temp = new Block(camera.getPos()[0] + (int) (500*blocksNeeded * Math.cos(camera.getRot()[1] * (2 * Math.PI / 360))),
-                        camera.getPos()[2] + (int) (500*blocksNeeded * Math.sin(camera.getRot()[1] * (2 * Math.PI / 360))),
-                        camera.getPos()[1] + (int) (500*blocksNeeded * -Math.sin(camera.getRot()[0] * (2 * Math.PI / 360))), redPlace,greenPlace,bluePlace,alphaPlace);
-                w.removeBlock(temp);
-                singleClick = true;
+        if(blocksNeeded>1) {
+            Block highlight = new Block(camera.getPos()[0] + (int) (500 * (blocksNeeded - 1) * Math.cos(camera.getRot()[1] * (2 * Math.PI / 360))),
+                    camera.getPos()[2] + (int) (500 * (blocksNeeded - 1) * Math.sin(camera.getRot()[1] * (2 * Math.PI / 360))),
+                    camera.getPos()[1] + (int) (500 * (blocksNeeded - 1) * -Math.sin(camera.getRot()[0] * (2 * Math.PI / 360))), 0, 0, 0, 1f);
+            highlight.setX(w.highlightBlock(highlight)[0]);
+            highlight.setY(w.highlightBlock(highlight)[1]);
+            highlight.setZ(w.highlightBlock(highlight)[2]);
+            highlight.render(w.getChunks().get(w.highlightBlock(highlight)[3]).getX(),
+                    w.getChunks().get(w.highlightBlock(highlight)[3]).getY(),
+                    w.getChunks().get(w.highlightBlock(highlight)[3]).getZ());
+            /*System.out.println(500*(highlight.getX()+16*w.getChunks().get(w.highlightBlock(highlight)).getX())+" "+
+                    500*(highlight.getZ()+16*w.getChunks().get(w.highlightBlock(highlight)).getZ())+" "+
+                    500*(highlight.getY()+16*w.getChunks().get(w.highlightBlock(highlight)).getY()));*/
+            if (!singleClick) {
+                if (Mouse.isButtonDown(0)) {
+                    temp = new Block(camera.getPos()[0] + (int) (500 * (blocksNeeded - 1) * Math.cos(camera.getRot()[1] * (2 * Math.PI / 360))),
+                            camera.getPos()[2] + (int) (500 * (blocksNeeded - 1) * Math.sin(camera.getRot()[1] * (2 * Math.PI / 360))),
+                            camera.getPos()[1] + (int) (500 * (blocksNeeded - 1) * -Math.sin(camera.getRot()[0] * (2 * Math.PI / 360))), redPlace, greenPlace, bluePlace, alphaPlace);
+                    w.addBlock(temp);
+                    singleClick = true;
+                } else if (Mouse.isButtonDown(1)) {
+                    temp = new Block(camera.getPos()[0] + (int) (500 * blocksNeeded * Math.cos(camera.getRot()[1] * (2 * Math.PI / 360))),
+                            camera.getPos()[2] + (int) (500 * blocksNeeded * Math.sin(camera.getRot()[1] * (2 * Math.PI / 360))),
+                            camera.getPos()[1] + (int) (500 * blocksNeeded * -Math.sin(camera.getRot()[0] * (2 * Math.PI / 360))), redPlace, greenPlace, bluePlace, alphaPlace);
+                    w.removeBlock(temp);
+                    singleClick = true;
+                }
             }
         }
         if(!Mouse.isButtonDown(0)&&!Mouse.isButtonDown(1)){
-            System.out.println("true");
             singleClick = false;
         }
     }
