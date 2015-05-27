@@ -15,9 +15,9 @@ public class Perlin {
 
         for (int i = 0; i < OCTAVES; i++) {
             //int frequency = (int) Math.pow(2, i);
-            float frequency = 0.1f;
+            float frequency = 0.05f;
             //float amplitude = (float) Math.pow(P, i);
-            float amplitude = 3;
+            float amplitude = 2;
 
             total += Noise2D.interpolate(x * frequency, y * frequency, Noise1D.primes[0]) * amplitude;
         }

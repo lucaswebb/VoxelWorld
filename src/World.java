@@ -60,8 +60,8 @@ public class World {
 
 
     public void render(){
-        for(int i = -1; i < 2; i++){
-            for(int k = -1; k < 2; k++){
+        for(int i = -2; i < 3; i++){
+            for(int k = -2; k < 3; k++){
                 if(isInWorld(getChunkReal(camerax,0,cameraz),i,k,0)>=0){
                     chunks.get(isInWorld(getChunkReal(camerax,0,cameraz),i,k,0)).render();
                 } else {
