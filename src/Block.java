@@ -1,9 +1,5 @@
 import org.lwjgl.opengl.GL11;
 
-/**
- * Created by arjun on 5/15/15.
- */
-
 public class Block {
     private int x;
     private int y;
@@ -71,46 +67,6 @@ public class Block {
         GL11.glVertex3d(1.0*f, 0*f,  1.0*f);
         GL11.glVertex3d(1.0*f, 0*f, 0*f);
         GL11.glEnd();
-
-        /*GL11.glBegin(GL11.GL_LINES);
-        GL11.glColor4f(0, 0, 0, 1);
-
-        // Top face
-        GL11.glVertex3d( 1.0*f, 1.0*f, 0*f);
-        GL11.glVertex3d(0*f, 1.0*f, 0*f);
-        GL11.glVertex3d(0 *f, 1.0*f,  1.0*f);
-        GL11.glVertex3d( 1.0*f, 1.0*f,  1.0*f);
-
-        // Bottom face
-        GL11.glVertex3d( 1.0*f, 0*f,  1.0*f);
-        GL11.glVertex3d(0*f, 0*f,  1.0*f);
-        GL11.glVertex3d(0*f, 0*f, 0*f);
-        GL11.glVertex3d( 1.0*f, 0*f, 0*f);
-
-        // Front face
-        GL11.glVertex3d( 1.0*f,  1.0*f, 1.0*f);
-        GL11.glVertex3d(0*f,  1.0*f, 1.0*f);
-        GL11.glVertex3d(0*f, 0*f, 1.0*f);
-        GL11.glVertex3d( 1.0*f, 0*f, 1.0*f);
-
-        // Back face
-        GL11.glVertex3d( 1.0*f, 0*f, 0*f);
-        GL11.glVertex3d(0*f, 0*f, 0*f);
-        GL11.glVertex3d(0*f,  1.0*f, 0*f);
-        GL11.glVertex3d( 1.0*f,  1.0*f, 0*f);
-
-        // Left face
-        GL11.glVertex3d(0*f,  1.0*f,  1.0*f);
-        GL11.glVertex3d(0*f,  1.0*f, 0*f);
-        GL11.glVertex3d(0*f, 0*f, 0*f);
-        GL11.glVertex3d(0*f, 0*f,  1.0*f);
-
-        // Right face
-        GL11.glVertex3d(1.0*f,  1.0*f, 0*f);
-        GL11.glVertex3d(1.0*f,  1.0*f,  1.0*f);
-        GL11.glVertex3d(1.0*f, 0*f,  1.0*f);
-        GL11.glVertex3d(1.0*f, 0*f, 0*f);
-        GL11.glEnd();*/
     }
 
     public int getX() {
@@ -123,7 +79,6 @@ public class Block {
         return z;
     }
 
-
     public void setX(int a) {
         x =a;
     }
@@ -132,28 +87,6 @@ public class Block {
     }
     public void setZ(int a){
         z = a;
-    }
-    public float getRed() {
-        return red;
-    }
-    public float getGreen() {
-        return green;
-    }
-    public float getBlue() {
-        return blue;
-    }
-    public float getAlpha() {
-        return alpha;
-    }
-    public void setRed(float a) {
-        red =a;
-    }
-    public void setGreen(float a){
-        green =a;
-    }
-    public void setBlue(float a){ blue = a;}
-    public void setAlpha(float a){
-        alpha = a;
     }
 }
 

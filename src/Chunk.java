@@ -1,7 +1,3 @@
-/**
- * Created by arjun on 5/15/15.
- */
-
 public class Chunk {
     private Block[][][] chunk; //3D Array holding Blocks
     //Values determining where the chunk is
@@ -120,27 +116,39 @@ public class Chunk {
                 int wy = 16 * this.getY() + i;
                 float height = generator.getHeight(wx,wy);
                 for (int h = (int) height; h >= 0; h--) {
-                    Block temp = new Block(j, i, h, height / 32, (32 - (2 * Math.abs(10.5f - height))) / 32, (32 - height) / 32, 1);
+                    Block temp = new Block(j, i, h, determineR(height, 32f), determineG(height, 32f), determineB(height, 32f), 1);
                     this.addBlock(temp);
                 }
             }
         }
+    }
 
-
-
-        /*for(int i = 0; i < chunk.length; i++) {
-            for (int j = 0; j < chunk[0].length; j++) {
-                if(j==0||j==15 && i==0||i==15) {
-                    Block temp = new Block(i, j, 0, 0, 1, 0, 1);
-                    this.addBlock(temp);
-                }
-                else{
-                    Block temp = new Block(i, j, 0, 0, 0, 1, 1);
-                    this.addBlock(temp);
-                }
-            }
+    public float determineR(float x, float h){
+        if(x<(h/2f)){
+            return 0;
         }
-        */
+        else {
+            return 1f/ (h/2f) * (x-(h/2f));
+        }
+    }
+    public float determineB(float x, float h){
+        if(x<(h/2f)){
+            return (-1f*(1f/(h/2f))*x)+1f;
+        }
+        else {
+            return 0;
+        }
+    }
 
+    public float determineG(float x, float h){
+        if(x>(h/4f) && x<(h/2f)){
+            return (x-(h/4))*1/(h/4);
+        }
+        else if(x>(h/2f) && x<(3f*h/4f)){
+            return ((3*h/4)-x)*1/(h/4);
+        }
+        else {
+            return 0;
+        }
     }
 }

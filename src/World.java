@@ -1,7 +1,3 @@
-/**
- * Created by arjun on 5/21/15.
- */
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 public class World {
     private ArrayList<Chunk> chunks;
@@ -49,8 +45,8 @@ public class World {
 
 
     public void render(){
-        for(int i = 3; i > -2; i--){
-            for(int k = 3; k > -2; k--){
+        for(int i = -2; i < 3; i++){
+            for(int k = -2; k < 3; k++){
                 if(isInWorld(getChunkReal(camerax,0,cameraz),i,k,0)>=0){
                     chunks.get(isInWorld(getChunkReal(camerax,0,cameraz),i,k,0)).render();
                 } else {
@@ -70,8 +66,6 @@ public class World {
         for(int i = 0; i < chunks.size(); i++){
             if(chunks.get(i).getX()==temp[0]&&chunks.get(i).getY()==temp[1]&&chunks.get(i).getZ()==temp[2])
             {
-                //System.out.println(chunks.get(i).getX()+" "+chunks.get(i).getY());
-                //System.out.println(b.getZ());
                 if(b.getX()>=0) {
                     b.setX(Math.abs((b.getX()-8000*chunks.get(i).getX())/500));
                 }
@@ -97,8 +91,6 @@ public class World {
         for(int i = 0; i < chunks.size(); i++){
             if(chunks.get(i).getX()==temp[0]&&chunks.get(i).getY()==temp[1]&&chunks.get(i).getZ()==temp[2])
             {
-                //System.out.println(chunks.get(i).getX()+" "+chunks.get(i).getY());
-                //System.out.println(b.getZ());
                 if(b.getX()>=0) {
                     b.setX(Math.abs((b.getX()-8000*chunks.get(i).getX())/500));
                 }
@@ -125,8 +117,6 @@ public class World {
         for(int i = 0; i < chunks.size(); i++){
             if(chunks.get(i).getX()==temp[0]&&chunks.get(i).getY()==temp[1]&&chunks.get(i).getZ()==temp[2])
             {
-                //System.out.println(chunks.get(i).getX()+" "+chunks.get(i).getY());
-                //System.out.println(b.getZ());
                 if(b.getX()>=0) {
                     b.setX(Math.abs((b.getX()-8000*chunks.get(i).getX())/500));
                 }
@@ -161,11 +151,6 @@ public class World {
         }
         return -1;
     }
-
-    public ArrayList<Chunk> getChunks(){
-        return chunks;
-    }
-
 
     public int[] getChunkReal(int x, int y, int z){
         int[] ans = new int[3];

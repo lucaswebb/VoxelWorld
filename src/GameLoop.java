@@ -1,7 +1,3 @@
-/**
- * Created by lucaswebb on 5/15/15.
- */
-
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
@@ -32,7 +28,6 @@ public class GameLoop {
     public void start(){
         try {
             Display.setDisplayMode(new DisplayMode(800, 600));
-            //Display.setFullscreen(true);
             Display.setDisplayMode(new DisplayMode(screenWidth, screenHeight));
             Display.create();
         } catch (LWJGLException e) {
@@ -62,96 +57,10 @@ public class GameLoop {
         w.render();
         placeRemoveBlocks();
         colorSelector();
-        if(Keyboard.isKeyDown(Keyboard.KEY_E)){
-            isClipping = !isClipping;
-            for(int i = 0; i < 6; i++){
-                camera.setClip(i,true);
-            }
-        }
         if(Keyboard.isKeyDown(Keyboard.KEY_F)){
             highlight = !highlight;
         }
-        clipTest();
     }
-
-    public void clipTest(){
-        if(isClipping) {
-            Block temp = new Block(camera.getPos()[0], camera.getPos()[1], camera.getPos()[2],0,0,0,0);
-
-            int xt = temp.getX();
-            int yt = temp.getY();
-            int zt = temp.getZ();
-
-            temp.setX(temp.getX()+500);
-            if(w.blockInWorld(temp)){
-                camera.setClip(2, false);
-            }
-            else{
-                camera.setClip(2, true);
-            }
-
-            temp.setX(xt);
-            temp.setY(yt);
-            temp.setZ(zt);
-
-            temp.setX(temp.getX() - 500);
-            if(w.blockInWorld(temp)){
-                camera.setClip(3, false);
-            }
-            else{
-                camera.setClip(3, true);
-            }
-
-            temp.setX(xt);
-            temp.setY(yt);
-            temp.setZ(zt);
-
-            temp.setY(temp.getY() + 500);
-            if(w.blockInWorld(temp)){
-                camera.setClip(4, false);
-            }
-            else{
-                camera.setClip(4, true);
-            }
-
-            temp.setX(xt);
-            temp.setY(yt);
-            temp.setZ(zt);
-
-            temp.setY(temp.getY() - 500);
-            if(w.blockInWorld(temp)){
-                camera.setClip(5, false);
-            }
-            else{
-                camera.setClip(5, true);
-            }
-
-            temp.setX(xt);
-            temp.setY(yt);
-            temp.setZ(zt);
-
-            temp.setZ(temp.getZ() + 500);
-            if(w.blockInWorld(temp)){
-                camera.setClip(0, false);
-            }
-            else{
-                camera.setClip(0, true);
-            }
-
-            temp.setX(xt);
-            temp.setY(yt);
-            temp.setZ(zt);
-
-            temp.setZ(temp.getZ() - 500);
-            if(w.blockInWorld(temp)){
-                camera.setClip(1, false);
-            }
-            else{
-                camera.setClip(1, true);
-            }
-        }
-    }
-
 
     public void placeRemoveBlocks(){
         int blocksNeeded = 0;

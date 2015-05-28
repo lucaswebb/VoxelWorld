@@ -1,7 +1,3 @@
-/**
- * Created by lucaswebb on 5/15/15.
- */
-
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector3f;
 import org.lwjgl.input.Mouse;
@@ -9,8 +5,6 @@ import org.lwjgl.input.Keyboard;
 
 public class CameraControl {
     public static float moveSpeed = 500.0f;
-    private boolean[] clipBooleans;
-
     private static float maxLook = 85;
 
     private static float mouseSensitivity = 0.05f;
@@ -19,10 +13,6 @@ public class CameraControl {
     private static Vector3f rotation;
 
     public CameraControl(){
-        clipBooleans = new boolean[6];
-        for(int i = 0; i < 6; i++){
-            clipBooleans[i]=true;
-        }
         this.create();
     }
 
@@ -32,13 +22,6 @@ public class CameraControl {
         temp[1] = (int)pos.y;
         temp[2] = (int)pos.z;
         return temp;
-    }
-
-    public boolean getClip(int i){
-        return clipBooleans[i];
-    }
-    public void setClip(int i, boolean k){
-        clipBooleans[i] = k;
     }
 
     public int[] getRot(){
@@ -51,7 +34,7 @@ public class CameraControl {
 
 
     public static void create() {
-        pos = new Vector3f((float)(1000000*Math.random()+1000000), 8000, (float)(1000000*Math.random()+1000000));
+        pos = new Vector3f((float)(1000000*Math.random()+1000000), 16000, (float)(1000000*Math.random()+1000000));
         rotation = new Vector3f(0, 0, 0);
     }
 
@@ -118,26 +101,26 @@ public class CameraControl {
 
         speed *= delta;
 
-        if(keyFlyUp && clipBooleans[0]) {
+        if(keyFlyUp) {
             pos.y += speed;
         }
-        if(keyFlyDown && clipBooleans[1]) {
+        if(keyFlyDown ) {
             pos.y -= speed;
         }
 
-        if(keyRight && clipBooleans[2]) {
+        if(keyRight) {
             pos.x -= Math.sin(Math.toRadians(rotation.y)) * speed;
             pos.z += Math.cos(Math.toRadians(rotation.y)) * speed;
         }
-        if(keyLeft && clipBooleans[3]) {
+        if(keyLeft) {
             pos.x += Math.sin(Math.toRadians(rotation.y)) * speed;
             pos.z -= Math.cos(Math.toRadians(rotation.y)) * speed;
         }
-        if(keyDown && clipBooleans[4]) {
+        if(keyDown) {
             pos.x += Math.sin(Math.toRadians(rotation.y - 90)) * speed;
             pos.z -= Math.cos(Math.toRadians(rotation.y - 90)) * speed;
         }
-        if(keyUp && clipBooleans[5]) {
+        if(keyUp) {
             pos.x += Math.sin(Math.toRadians(rotation.y + 90)) * speed;
             pos.z -= Math.cos(Math.toRadians(rotation.y + 90)) * speed;
         }
