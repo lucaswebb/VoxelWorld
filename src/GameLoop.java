@@ -24,9 +24,12 @@ public class GameLoop {
     private String input;
     boolean singleClick = false;
 
+    int screenWidth = 800;
+    int screenHeight = 600;
+
     public void start(){
         try {
-            Display.setDisplayMode(new DisplayMode(800, 600));
+            Display.setDisplayMode(new DisplayMode(screenWidth, screenHeight));
             Display.create();
         } catch (LWJGLException e) {
             e.printStackTrace();
@@ -35,6 +38,7 @@ public class GameLoop {
         }
         initGL(); // init OpenGL
 
+        Mouse.setCursorPosition(screenWidth/2,screenHeight/2);
         Mouse.setGrabbed(true);
 
         while (!Display.isCloseRequested() && !Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
