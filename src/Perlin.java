@@ -6,6 +6,8 @@
  *
  */
 
+//https://github.com/aaasen/voxel-party/tree/master/src/nexus/model/generators
+
 public class Perlin {
     public static final float P = 0.5f;
     public static final int OCTAVES = 1;
@@ -17,7 +19,7 @@ public class Perlin {
             //int frequency = (int) Math.pow(2, i);
             float frequency = 0.05f;
             //float amplitude = (float) Math.pow(P, i);
-            float amplitude = 2;
+            float amplitude = 4;
 
             total += Noise2D.interpolate(x * frequency, y * frequency, Noise1D.primes[0]) * amplitude;
         }

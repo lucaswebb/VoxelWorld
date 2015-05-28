@@ -115,7 +115,7 @@ public class Chunk {
 
     public void setUp(){
         for(int i=0;i<chunk.length;i++){
-            for(int j=0;j<chunk[0].length;j++){
+            for(int j=0;j<chunk[i].length;j++){
                 int wx = 16 * this.getX() + i;
                 int wy = 16 * this.getY() + j;
                 float height = generator.getHeight(wx,wy);
