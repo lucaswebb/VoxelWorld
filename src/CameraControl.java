@@ -9,6 +9,7 @@ import org.lwjgl.input.Keyboard;
 
 public class CameraControl {
     public static float moveSpeed = 500.0f;
+    private boolean[] clipBooleans;
 
     private static float maxLook = 85;
 
@@ -18,6 +19,10 @@ public class CameraControl {
     private static Vector3f rotation;
 
     public CameraControl(){
+        clipBooleans = new boolean[6];
+        for(int i = 0; i < 6; i++){
+            clipBooleans[i]=true;
+        }
         this.create();
     }
 
@@ -28,6 +33,14 @@ public class CameraControl {
         temp[2] = (int)pos.z;
         return temp;
     }
+
+    public boolean getClip(int i){
+        return clipBooleans[i];
+    }
+    public void setClip(int i, boolean k){
+        clipBooleans[i] = k;
+    }
+
 
     public int[] getRot(){
         int[] temp = new int[3];
@@ -56,7 +69,7 @@ public class CameraControl {
         GL11.glTranslatef(-pos.x, -pos.y, -pos.z);
     }
 
-    public static void acceptInput(float delta) {
+    public void acceptInput(float delta) {
         acceptInputRotate(delta);
         acceptInputGrab();
         acceptInputMove(delta);
@@ -81,7 +94,7 @@ public class CameraControl {
         }
     }
 
-    public static void acceptInputMove(float delta) {
+    public void acceptInputMove(float delta) {
         boolean keyUp = Keyboard.isKeyDown(Keyboard.KEY_W);
         boolean keyDown = Keyboard.isKeyDown(Keyboard.KEY_S);
         boolean keyRight = Keyboard.isKeyDown(Keyboard.KEY_D);
@@ -106,26 +119,26 @@ public class CameraControl {
 
         speed *= delta;
 
-        if(keyFlyUp) {
+        if(keyFlyUp && clipBooleans[0]) {
             pos.y += speed;
         }
-        if(keyFlyDown) {
+        if(keyFlyDown && clipBooleans[1]) {
             pos.y -= speed;
         }
 
-        if(keyRight) {
+        if(keyRight && clipBooleans[2]) {
             pos.x -= Math.sin(Math.toRadians(rotation.y)) * speed;
             pos.z += Math.cos(Math.toRadians(rotation.y)) * speed;
         }
-        if(keyLeft) {
+        if(keyLeft && clipBooleans[3]) {
             pos.x += Math.sin(Math.toRadians(rotation.y)) * speed;
             pos.z -= Math.cos(Math.toRadians(rotation.y)) * speed;
         }
-        if(keyDown) {
+        if(keyDown && clipBooleans[4]) {
             pos.x += Math.sin(Math.toRadians(rotation.y - 90)) * speed;
             pos.z -= Math.cos(Math.toRadians(rotation.y - 90)) * speed;
         }
-        if(keyUp) {
+        if(keyUp && clipBooleans[5]) {
             pos.x += Math.sin(Math.toRadians(rotation.y + 90)) * speed;
             pos.z -= Math.cos(Math.toRadians(rotation.y + 90)) * speed;
         }
