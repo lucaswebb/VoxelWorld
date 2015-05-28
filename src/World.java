@@ -9,21 +9,10 @@ public class World {
     private int cameray = 0;
     private int cameraz = 0;
 
-    TerrainGen generator = new TerrainGen();
-
     World(){
         chunks = new ArrayList<Chunk>();
     }
 
-    public void setUp(){
-        chunks.add(new Chunk(0,0,0));
-        chunks.add(new Chunk(-1,0,0));
-        chunks.add(new Chunk(0,-1,0));
-        chunks.add(new Chunk(-1,-1,0));
-        for(Chunk chunk : chunks){
-            chunk.setUp();
-        }
-    }
     public void setCamera(int[] a){
         camerax = a[0];
         cameray = a[1];
@@ -60,7 +49,7 @@ public class World {
 
 
     public void render(){
-        for(int i = -2; i < 3; i++){
+        for(int i = 3; i > -2; i--){
             for(int k = -2; k < 3; k++){
                 if(isInWorld(getChunkReal(camerax,0,cameraz),i,k,0)>=0){
                     chunks.get(isInWorld(getChunkReal(camerax,0,cameraz),i,k,0)).render();
@@ -97,7 +86,6 @@ public class World {
                     b.setZ(Math.abs(b.getZ())/500);
                 }
                 chunks.get(i).addBlock(b);
-                System.out.println("ADD:"+b.getX()+" "+b.getY()+" "+b.getZ());
             }
         }
     }
@@ -155,7 +143,6 @@ public class World {
                 else {
                     b.setZ(16-Math.abs(b.getZ())/500);
                 }
-                System.out.println("REMOVE:"+b.getX()+" "+b.getY()+" "+b.getZ());
                 chunks.get(i).removeBlock(b.getX(), b.getY(), b.getZ());
             }
         }

@@ -9,7 +9,6 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.GLU;
-import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 
@@ -23,6 +22,10 @@ public class GameLoop {
     private float alphaPlace = 1;
     private String input;
     boolean singleClick = false;
+    boolean isClipping = false;
+    boolean highlight = true;
+
+
 
     int screenWidth = 800;
     int screenHeight = 600;
@@ -58,6 +61,94 @@ public class GameLoop {
         w.render();
         placeRemoveBlocks();
         colorSelector();
+        if(Keyboard.isKeyDown(Keyboard.KEY_E)){
+            isClipping = !isClipping;
+            for(int i = 0; i < 6; i++){
+                camera.setClip(i,true);
+            }
+        }
+        if(Keyboard.isKeyDown(Keyboard.KEY_F)){
+            highlight = !highlight;
+        }
+        clipTest();
+    }
+
+    public void clipTest(){
+        if(isClipping) {
+            Block temp = new Block(camera.getPos()[0], camera.getPos()[1], camera.getPos()[2],0,0,0,0);
+
+            int xt = temp.getX();
+            int yt = temp.getY();
+            int zt = temp.getZ();
+
+            temp.setX(temp.getX()+500);
+            if(w.blockInWorld(temp)){
+                camera.setClip(2, false);
+            }
+            else{
+                camera.setClip(2, true);
+            }
+
+            temp.setX(xt);
+            temp.setY(yt);
+            temp.setZ(zt);
+
+            temp.setX(temp.getX() - 500);
+            if(w.blockInWorld(temp)){
+                camera.setClip(3, false);
+            }
+            else{
+                camera.setClip(3, true);
+            }
+
+            temp.setX(xt);
+            temp.setY(yt);
+            temp.setZ(zt);
+
+            temp.setY(temp.getY() + 500);
+            if(w.blockInWorld(temp)){
+                camera.setClip(4, false);
+            }
+            else{
+                camera.setClip(4, true);
+            }
+
+            temp.setX(xt);
+            temp.setY(yt);
+            temp.setZ(zt);
+
+            temp.setY(temp.getY() - 500);
+            if(w.blockInWorld(temp)){
+                camera.setClip(5, false);
+            }
+            else{
+                camera.setClip(5, true);
+            }
+
+            temp.setX(xt);
+            temp.setY(yt);
+            temp.setZ(zt);
+
+            temp.setZ(temp.getZ() + 500);
+            if(w.blockInWorld(temp)){
+                camera.setClip(0, false);
+            }
+            else{
+                camera.setClip(0, true);
+            }
+
+            temp.setX(xt);
+            temp.setY(yt);
+            temp.setZ(zt);
+
+            temp.setZ(temp.getZ() - 500);
+            if(w.blockInWorld(temp)){
+                camera.setClip(1, false);
+            }
+            else{
+                camera.setClip(1, true);
+            }
+        }
     }
 
 
@@ -74,20 +165,12 @@ public class GameLoop {
             }
         }
         if(blocksNeeded>1) {
-            Block highlight = new Block(camera.getPos()[0] + (int) (500 * (blocksNeeded-1) * Math.cos(camera.getRot()[1] * (2 * Math.PI / 360))*Math.cos(camera.getRot()[0] * (2 * Math.PI / 360))),
-            camera.getPos()[2] + (int) (500 * (blocksNeeded-1) * Math.sin(camera.getRot()[1] * (2 * Math.PI / 360))*Math.cos(camera.getRot()[0] * (2 * Math.PI / 360))),
+            if(highlight){
+                Block highlight = new Block(camera.getPos()[0] + (int) (500 * (blocksNeeded-1) * Math.cos(camera.getRot()[1] * (2 * Math.PI / 360))*Math.cos(camera.getRot()[0] * (2 * Math.PI / 360))),
+                    camera.getPos()[2] + (int) (500 * (blocksNeeded-1) * Math.sin(camera.getRot()[1] * (2 * Math.PI / 360))*Math.cos(camera.getRot()[0] * (2 * Math.PI / 360))),
                     camera.getPos()[1] + (int) (500 * (blocksNeeded-1) * -Math.sin(camera.getRot()[0] * (2 * Math.PI / 360))), 1, 1, 1, .1f);
-            /*highlight.setX(w.highlightBlock(highlight)[0]);
-            highlight.setY(w.highlightBlock(highlight)[1]);
-            highlight.setZ(w.highlightBlock(highlight)[2]);
-            System.out.println(highlight.getX()+" "+highlight.getY()+highlight.getZ()+" "+
-                    w.getChunks().get(w.highlightBlock(highlight)[3]).getX()+" "+
-                    w.getChunks().get(w.highlightBlock(highlight)[3]).getY()+" "+
-                    w.getChunks().get(w.highlightBlock(highlight)[3]).getZ());
-            highlight.render(w.getChunks().get(w.highlightBlock(highlight)[3]).getX(),
-                    w.getChunks().get(w.highlightBlock(highlight)[3]).getY(),
-                    w.getChunks().get(w.highlightBlock(highlight)[3]).getZ());*/
-            w.highlightBlock(highlight);
+                w.highlightBlock(highlight);
+            }
             if (!singleClick) {
                 if (Mouse.isButtonDown(0)) {
                     temp = new Block(camera.getPos()[0] + (int) (500 * (blocksNeeded-1) * Math.cos(camera.getRot()[1] * (2 * Math.PI / 360))*Math.cos(camera.getRot()[0] * (2 * Math.PI / 360))),
@@ -140,8 +223,6 @@ public class GameLoop {
         GLU.gluLookAt(0,0,0,10,0,0,0,1,0);
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
         w = new World();
-        //w.setUp();
-
     }
 
     public void renderGL() {
