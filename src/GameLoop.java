@@ -26,11 +26,14 @@ public class GameLoop {
     boolean highlight = true;
 
 
+    int screenWidth = 800;
+    int screenHeight = 600;
 
     public void start(){
         try {
             Display.setDisplayMode(new DisplayMode(800, 600));
             //Display.setFullscreen(true);
+            Display.setDisplayMode(new DisplayMode(screenWidth, screenHeight));
             Display.create();
         } catch (LWJGLException e) {
             e.printStackTrace();
@@ -39,6 +42,7 @@ public class GameLoop {
         }
         initGL(); // init OpenGL
 
+        Mouse.setCursorPosition(screenWidth/2,screenHeight/2);
         Mouse.setGrabbed(true);
 
         while (!Display.isCloseRequested() && !Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
@@ -67,12 +71,10 @@ public class GameLoop {
         if(Keyboard.isKeyDown(Keyboard.KEY_F)){
             highlight = !highlight;
         }
-
-        System.out.println(camera.getPos()[0]+" "+camera.getPos()[1]+" "+camera.getPos()[2]);
-        //clipTest();
+        clipTest();
     }
 
-    /*public void clipTest(){
+    public void clipTest(){
         if(isClipping) {
             Block temp = new Block(camera.getPos()[0], camera.getPos()[1], camera.getPos()[2],0,0,0,0);
 
@@ -148,7 +150,7 @@ public class GameLoop {
                 camera.setClip(1, true);
             }
         }
-    }*/
+    }
 
 
     public void placeRemoveBlocks(){
@@ -227,6 +229,7 @@ public class GameLoop {
     public void renderGL() {
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
         GL11.glEnable(GL11.GL_DEPTH_TEST);
+        GL11.glEnable(GL11.GL_ALPHA_TEST);
         manageGame();
     }
 
