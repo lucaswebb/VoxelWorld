@@ -1,6 +1,7 @@
 import org.lwjgl.opengl.GL11;
 
 public class Block {
+    //Initial Variables
     private int x;
     private int y;
     private int z;
@@ -9,6 +10,7 @@ public class Block {
     private float blue;
     private float alpha;
 
+    //Constructor
     Block(int x, int y, int z, float r, float g, float b, float a) {
         this.x = x;
         this.y = y;
@@ -26,7 +28,7 @@ public class Block {
         cube(500);
         GL11.glPopMatrix();
     }
-
+    //Make a Cube of Dimension f
     public void cube(int f){
         GL11.glBegin(GL11.GL_QUADS);
         GL11.glColor4f(red, green, blue, alpha);
@@ -68,6 +70,8 @@ public class Block {
         GL11.glVertex3d(1.0*f, 0*f, 0*f);
         GL11.glEnd();
     }
+
+    //Used to get and Switch Values
 
     public int getX() {
         return x;
