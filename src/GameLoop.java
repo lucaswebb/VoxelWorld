@@ -26,7 +26,6 @@ public class GameLoop {
     boolean highlight = true;
 
 
-
     int screenWidth = 800;
     int screenHeight = 600;
 
