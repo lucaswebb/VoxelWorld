@@ -40,7 +40,6 @@ public class CameraControl {
     public void setClip(int i, boolean k){
         clipBooleans[i] = k;
     }
-    //LUCAS IS FAT
 
     public int[] getRot(){
         int[] temp = new int[3];
