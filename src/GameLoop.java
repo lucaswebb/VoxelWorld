@@ -30,6 +30,7 @@ public class GameLoop {
     public void start(){
         try {
             Display.setDisplayMode(new DisplayMode(800, 600));
+            //Display.setFullscreen(true);
             Display.create();
         } catch (LWJGLException e) {
             e.printStackTrace();
@@ -66,10 +67,12 @@ public class GameLoop {
         if(Keyboard.isKeyDown(Keyboard.KEY_F)){
             highlight = !highlight;
         }
-        clipTest();
+
+        System.out.println(camera.getPos()[0]+" "+camera.getPos()[1]+" "+camera.getPos()[2]);
+        //clipTest();
     }
 
-    public void clipTest(){
+    /*public void clipTest(){
         if(isClipping) {
             Block temp = new Block(camera.getPos()[0], camera.getPos()[1], camera.getPos()[2],0,0,0,0);
 
@@ -145,7 +148,7 @@ public class GameLoop {
                 camera.setClip(1, true);
             }
         }
-    }
+    }*/
 
 
     public void placeRemoveBlocks(){
@@ -224,7 +227,6 @@ public class GameLoop {
     public void renderGL() {
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
         GL11.glEnable(GL11.GL_DEPTH_TEST);
-        GL11.glEnable(GL11.GL_ALPHA_TEST);
         manageGame();
     }
 

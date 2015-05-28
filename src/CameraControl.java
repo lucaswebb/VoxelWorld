@@ -52,7 +52,7 @@ public class CameraControl {
 
 
     public static void create() {
-        pos = new Vector3f(0, 0, 0);
+        pos = new Vector3f((float)(1000000*Math.random()+1000000), 8000, (float)(1000000*Math.random()+1000000));
         rotation = new Vector3f(0, 0, 0);
     }
 

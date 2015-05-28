@@ -116,11 +116,11 @@ public class Chunk {
     public void setUp(){
         for(int i=0;i<chunk.length;i++){
             for(int j=0;j<chunk[i].length;j++){
-                int wx = 16 * this.getX() + i;
-                int wy = 16 * this.getY() + j;
+                int wx = 16 * this.getX() + j;
+                int wy = 16 * this.getY() + i;
                 float height = generator.getHeight(wx,wy);
-                for(int h=(int)height;h>=0;h--) {
-                    Block temp = new Block(i, j, h, height/32, (32-(2*Math.abs(10.5f-height)))/32, (32-height)/32, 1);
+                for (int h = (int) height; h >= 0; h--) {
+                    Block temp = new Block(j, i, h, height / 32, (32 - (2 * Math.abs(10.5f - height))) / 32, (32 - height) / 32, 1);
                     this.addBlock(temp);
                 }
             }

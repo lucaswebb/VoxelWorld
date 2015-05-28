@@ -50,7 +50,7 @@ public class World {
 
     public void render(){
         for(int i = 3; i > -2; i--){
-            for(int k = -2; k < 3; k++){
+            for(int k = 3; k > -2; k--){
                 if(isInWorld(getChunkReal(camerax,0,cameraz),i,k,0)>=0){
                     chunks.get(isInWorld(getChunkReal(camerax,0,cameraz),i,k,0)).render();
                 } else {
@@ -62,6 +62,8 @@ public class World {
             }
         }
     }
+
+
 
     public void addBlock(Block b){
         int[] temp = getChunkReal(b.getX(), b.getZ(), b.getY());
