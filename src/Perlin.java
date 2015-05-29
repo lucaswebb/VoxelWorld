@@ -7,18 +7,20 @@
  */
 
 //https://github.com/aaasen/voxel-party/tree/master/src/nexus/model/generators
+//We viewed the noise generator for a black box for the most part
 
 public class Perlin {
     public static final float P = 0.5f;
     public static final int OCTAVES = 1;
 
+    //This is the only area we modified
     public static float perlin2D(float x, float y) {
         float total = 0.0f;
 
         for (int i = 0; i < OCTAVES; i++) {
-            //int frequency = (int) Math.pow(2, i);
+            //These values can be changed for desired terrain gen
+            //We selected these to work well
             float frequency = 0.05f;
-            //float amplitude = (float) Math.pow(P, i);
             float amplitude = 4;
 
             total += Noise2D.interpolate(x * frequency, y * frequency, Noise1D.primes[0]) * amplitude;

@@ -28,6 +28,7 @@ public class Block {
         cube(500);
         GL11.glPopMatrix();
     }
+
     //Make a Cube of Dimension f
     public void cube(int f){
         GL11.glBegin(GL11.GL_QUADS);
@@ -72,7 +73,6 @@ public class Block {
     }
 
     //Used to get and Switch Values
-
     public int getX() {
         return x;
     }

@@ -62,7 +62,6 @@ public class Chunk {
         }
     }
 
-
     public void removeBlock(int x, int y, int z) {
         //removes a block from chunk
         if(x<16&&x>=0 &&y<16&&y>=0 &&z<128&&z>=0) {

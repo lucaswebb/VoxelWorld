@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+
 public class World {
     private ArrayList<Chunk> chunks;  //Dynamically changing ArrayList of all Chunks.  Stores values
 
@@ -12,14 +13,12 @@ public class World {
         chunks = new ArrayList<Chunk>();
     }
 
-
     //Feeds camera position
     public void setCamera(int[] a){
         camerax = a[0];
         cameray = a[1];
         cameraz = a[2];
     }
-
 
     //Checks to see if a block b exists in the world and returns true if it does
     public boolean blockInWorld(Block b){
@@ -51,7 +50,6 @@ public class World {
     }
 
     //Renders the world.
-
     public void render(){
         //Check 3x3 around camera
         for(int i = -2; i < 3; i++){
@@ -67,7 +65,6 @@ public class World {
             }
         }
     }
-
 
     //Edits a block b to the world
         //IF a == 0 it adds the block

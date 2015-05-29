@@ -7,7 +7,6 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.GLU;
 import javax.swing.JOptionPane;
 
-
 public class GameLoop {
 
     CameraControl camera = new CameraControl(); //Create camera
@@ -25,7 +24,6 @@ public class GameLoop {
     //Dimensions of screen
     int screenWidth = 800;
     int screenHeight = 600;
-
 
     //Set up display
     public void start(){
@@ -50,7 +48,6 @@ public class GameLoop {
             Display.update();
             Display.sync(60); // cap fps to 60fps
         }
-
         Display.destroy();
     }
 
@@ -122,7 +119,6 @@ public class GameLoop {
             bluePlace = Float.parseFloat(input);
         }
     }
-
 
     public void update(){ //Updates camera
         camera.acceptInput(1);
