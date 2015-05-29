@@ -120,41 +120,10 @@ public class Chunk {
                 int wy = 16 * this.getY() + i;
                 float height = generator.getHeight(wx,wy); //Gets height from generator
                 for (int h = (int) height; h >= 0; h--) {
-                    Block temp = new Block(j, i, h, determineR(height, 32f), determineG(height, 32f), determineB(height, 32f), 1);
+                    Block temp = new Block(j, i, h, height/31, 0, (31-height)/31, 1);
                     this.addBlock(temp);
                 }
             }
-        }
-    }
-
-    //Methods to determine color values
-
-    public float determineR(float x, float h){
-        if(x<(h/2f)){
-            return 0;
-        }
-        else {
-            return 1f/ (h/2f) * (x-(h/2f));
-        }
-    }
-    public float determineB(float x, float h){
-        if(x<(h/2f)){
-            return (-1f*(1f/(h/2f))*x)+1f;
-        }
-        else {
-            return 0;
-        }
-    }
-
-    public float determineG(float x, float h){
-        if(x>(h/4f) && x<(h/2f)){
-            return (x-(h/4))*1/(h/4);
-        }
-        else if(x>(h/2f) && x<(3f*h/4f)){
-            return ((3*h/4)-x)*1/(h/4);
-        }
-        else {
-            return 0;
         }
     }
 }
