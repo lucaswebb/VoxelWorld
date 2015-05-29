@@ -120,9 +120,6 @@ public class GameLoop {
             input = JOptionPane.showInputDialog(null, "Choose Blue:", "Color Selector",
                     JOptionPane.PLAIN_MESSAGE);
             bluePlace = Float.parseFloat(input);
-            input = JOptionPane.showInputDialog(null, "Choose Alpha:", "Color Selector",
-                    JOptionPane.PLAIN_MESSAGE);
-            alphaPlace = Float.parseFloat(input);
         }
     }
 
