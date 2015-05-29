@@ -6,7 +6,6 @@ import org.lwjgl.input.Keyboard;
 public class CameraControl {
     public static float moveSpeed = 500.0f;
     private static float maxLook = 85;
-
     private static float mouseSensitivity = 0.05f;
 
     private static Vector3f pos;
@@ -24,6 +23,7 @@ public class CameraControl {
         return temp;
     }
 
+    //returns position vector
     public int[] getRot(){
         int[] temp = new int[3];
         temp[0] = (int)rotation.x;
@@ -32,12 +32,12 @@ public class CameraControl {
         return temp;
     }
 
-
     public static void create() {
         pos = new Vector3f((float)(1000000*Math.random()+1000000), 16000, (float)(1000000*Math.random()+1000000));
         rotation = new Vector3f(0, 0, 0);
     }
 
+    //applies transformation to world
     public static void apply() {
         if(rotation.y / 360 > 1) {
             rotation.y -= 360;
@@ -51,12 +51,14 @@ public class CameraControl {
         GL11.glTranslatef(-pos.x, -pos.y, -pos.z);
     }
 
+    //gets input
     public void acceptInput(float delta) {
         acceptInputRotate(delta);
         acceptInputGrab();
         acceptInputMove(delta);
     }
 
+    //gets mouse input
     public static void acceptInputRotate(float delta) {
         if(Mouse.isGrabbed()) {
             float mouseDX = Mouse.getDX();
@@ -67,6 +69,7 @@ public class CameraControl {
         }
     }
 
+
     public static void acceptInputGrab() {
         if(Mouse.isInsideWindow() && Mouse.isButtonDown(0)) {
             Mouse.setGrabbed(true);
@@ -76,6 +79,7 @@ public class CameraControl {
         }
     }
 
+    //accepts keyboard input
     public void acceptInputMove(float delta) {
         boolean keyUp = Keyboard.isKeyDown(Keyboard.KEY_W);
         boolean keyDown = Keyboard.isKeyDown(Keyboard.KEY_S);
@@ -108,6 +112,7 @@ public class CameraControl {
             pos.y -= speed;
         }
 
+        //trig for moving based on rotation
         if(keyRight) {
             pos.x -= Math.sin(Math.toRadians(rotation.y)) * speed;
             pos.z += Math.cos(Math.toRadians(rotation.y)) * speed;
